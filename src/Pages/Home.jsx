@@ -67,6 +67,7 @@ const Home = () => {
     const data = { categoryName: category, categoryProducts: theArray };
     dispatch(selectedCatProduct(data));
   };
+  console.log("first");
 
   return (
     <>
@@ -78,13 +79,12 @@ const Home = () => {
           <div
             className={`lg:px-0 px-5 grid lg:grid-cols-4 grid-cols-2 gap-x-5 gap-y-10`}
           >
-            {allProduct.slice(28, 36).map((product) => (
+            {allProduct.slice(64, 72).map((product) => (
               <div key={product.id}>
                 <ProductCard
                   {...product}
                   price={countryPrice(product, country)}
                   countryCode={countryCurrency(product, country)}
-                  // Actions
                   onClickCart={() => addToCart(product)}
                   onClickFav={() => addToFav(product)}
                   onClickToDetails={() => handleProductClick(product)}
