@@ -13,7 +13,13 @@ import { selectProduct } from "../Features/SingleProuctSlice";
 import { successToast, warnToast } from "../Utilities/ToastMessage";
 import { selectedCatProduct } from "../Features/CategoryProductSlice";
 import { countryCurrency, countryPrice } from "../Utilities/PriceSelection";
-import { allProduct, bigPack, readyMade, sliderCard } from "../Utilities/Dummy";
+import {
+  allProduct,
+  bigPack,
+  newlyAdded,
+  readyMade,
+  sliderCard,
+} from "../Utilities/Dummy";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -79,7 +85,7 @@ const Home = () => {
           <div
             className={`lg:px-0 px-5 grid lg:grid-cols-4 grid-cols-2 gap-x-5 gap-y-10`}
           >
-            {allProduct.slice(64, 72).map((product) => (
+            {newlyAdded.map((product) => (
               <div key={product.id}>
                 <ProductCard
                   {...product}

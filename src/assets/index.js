@@ -68,7 +68,10 @@ export { default as LeftIcon } from "../assets/Left_icon.svg";
 export { default as GerlicPaste } from "../assets/Garlic-paste.jpeg";
 export { default as GingerPaste } from "../assets/Ginger_paste.jpeg";
 export { default as PeanutButter } from "../assets/Peanut_butter.jpeg";
-
+export { default as PlantainChips } from "../assets/Plantain_chips.jpeg";
 export { default as PlantainChips2 } from "../assets/Plantain_chip2.jpeg";
 export { default as PlantainChips3 } from "../assets/Plantain_chip3.jpeg";
-export { default as PlantainChips } from "../assets/Plantain_chips.jpeg";
+
+export { default as Cashews } from "../assets/Cashews.jpeg";
+export { default as Peanut } from "../assets/Peanut.jpeg";
+export { default as ZoboDrink } from "../assets/Zobo_drink.jpeg";

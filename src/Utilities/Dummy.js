@@ -2,6 +2,7 @@ import {
   Aganyin,
   Amala,
   AmamaBig,
+  Cashews,
   Dalgety,
   DalgetyHoney,
   Eforiri,
@@ -15,6 +16,7 @@ import {
   OfadaSourse,
   Pap,
   PapBig,
+  Peanut,
   PeanutButter,
   PlantainAmala,
   PlantainAmalaBig,
@@ -39,6 +41,7 @@ import {
   WheatBig,
   WheatBig2,
   WheatBig3,
+  ZoboDrink,
 } from "../assets";
 
 export const AdvertMessage = [
@@ -313,299 +316,6 @@ export const sliderCard = [
     categories: [
       "Food",
       "keg",
-      "Health and wellness",
-      "Popular product",
-      "Recently added",
-      "Ready made food",
-      "Packaged food",
-    ],
-    priceNgn: "10000",
-    priceUs: "40",
-    priceUk: "30",
-    priceGhana: "140",
-    ngeriaCode: "#",
-    ghanaCode: "GHS",
-    ukCode: "GBP",
-    usCode: "$",
-    priceCanada: "300",
-    canadaCode: "CAD",
-  },
-];
-
-export const readyMade = [
-  {
-    id: 15,
-    style: "carousel1",
-    productImg: Eforiri,
-    collectionTitle: "Savor the Flavor: Unforgettable Culinary Creations",
-    collectionDecription:
-      "From savory starters to mouthwatering mains, our menu is a celebration of flavors from around the world. Try our signature [dish name], a symphony of perfectly balanced ingredients that will transport you to food paradise.",
-
-    // productCard
-    title: "Eforiro Soup",
-    categories: [
-      "Food",
-      "Health and wellness",
-      "Popular product",
-      "Recently added",
-      "Ready made food",
-      "Packaged food",
-    ],
-    priceNgn: "10000",
-    priceUs: "40",
-    priceUk: "30",
-    priceGhana: "140",
-    ngeriaCode: "#",
-    ghanaCode: "GHS",
-    ukCode: "GBP",
-    usCode: "$",
-    priceCanada: "300",
-    canadaCode: "CAD",
-  },
-  {
-    id: 16,
-    style: "carousel1",
-    productImg: OfadaSourse,
-    collectionTitle: "Savor the Flavor: Unforgettable Culinary Creations",
-    collectionDecription:
-      "From savory starters to mouthwatering mains, our menu is a celebration of flavors from around the world. Try our signature [dish name], a symphony of perfectly balanced ingredients that will transport you to food paradise.",
-
-    // productCard
-    title: "Ofada Sauce",
-    categories: [
-      "Food",
-      "Health and wellness",
-      "Popular product",
-      "Recently added",
-      "Ready made food",
-      "Packaged food",
-    ],
-    priceNgn: "10000",
-    priceUs: "40",
-    priceUk: "30",
-    priceGhana: "140",
-    ngeriaCode: "#",
-    ghanaCode: "GHS",
-    ukCode: "GBP",
-    usCode: "$",
-    priceCanada: "300",
-    canadaCode: "CAD",
-  },
-  {
-    id: 17,
-    style: "carousel1",
-    productImg: EgusiSoup,
-    collectionTitle: "Savor the Flavor: Unforgettable Culinary Creations",
-    collectionDecription:
-      "From savory starters to mouthwatering mains, our menu is a celebration of flavors from around the world. Try our signature [dish name], a symphony of perfectly balanced ingredients that will transport you to food paradise.",
-
-    // productCard
-    title: "Egusi Soup",
-    categories: [
-      "Food",
-      "Health and wellness",
-      "Popular product",
-      "Recently added",
-      "Ready made food",
-      "Packaged food",
-    ],
-    priceNgn: "10000",
-    priceUs: "40",
-    priceUk: "30",
-    priceGhana: "140",
-    ngeriaCode: "#",
-    ghanaCode: "GHS",
-    ukCode: "GBP",
-    usCode: "$",
-    priceCanada: "300",
-    canadaCode: "CAD",
-  },
-  {
-    id: 18,
-    style: "carousel1",
-    productImg: Aganyin,
-    collectionTitle: "Savor the Flavor: Unforgettable Culinary Creations",
-    collectionDecription:
-      "From savory starters to mouthwatering mains, our menu is a celebration of flavors from around the world. Try our signature [dish name], a symphony of perfectly balanced ingredients that will transport you to food paradise.",
-
-    // productCard
-    title: "Temi Aganyin Pepper Sauce Mix",
-    categories: [
-      "Food",
-      "Health and wellness",
-      "Popular product",
-      "Recently added",
-      "Ready made food",
-      "Packaged food",
-    ],
-    priceNgn: "10000",
-    priceUs: "40",
-    priceUk: "30",
-    priceGhana: "140",
-    ngeriaCode: "#",
-    ghanaCode: "GHS",
-    ukCode: "GBP",
-    usCode: "$",
-    priceCanada: "300",
-    canadaCode: "CAD",
-  },
-  {
-    id: 19,
-    style: "carousel1",
-    productImg: WakyeLead,
-    collectionTitle: "Savor the Flavor: Unforgettable Culinary Creations",
-    collectionDecription:
-      "From savory starters to mouthwatering mains, our menu is a celebration of flavors from around the world. Try our signature [dish name], a symphony of perfectly balanced ingredients that will transport you to food paradise.",
-
-    // productCard
-    title: "Wakye Leaf",
-    categories: [
-      "Food",
-      "Health and wellness",
-      "Popular product",
-      "Recently added",
-      "Ready made food",
-      "Packaged food",
-    ],
-    priceNgn: "10000",
-    priceUs: "40",
-    priceUk: "30",
-    priceGhana: "140",
-    ngeriaCode: "#",
-    ghanaCode: "GHS",
-    ukCode: "GBP",
-    usCode: "$",
-    priceCanada: "300",
-    canadaCode: "CAD",
-  },
-  {
-    id: 20,
-    style: "carousel1",
-    productImg: Dalgety,
-    collectionTitle: "Savor the Flavor: Unforgettable Culinary Creations",
-    collectionDecription:
-      "From savory starters to mouthwatering mains, our menu is a celebration of flavors from around the world. Try our signature [dish name], a symphony of perfectly balanced ingredients that will transport you to food paradise.",
-
-    // productCard
-    title: "Dalgety effective slimline tea 40g",
-    categories: [
-      "Food",
-      "Health and wellness",
-      "Popular product",
-      "Recently added",
-      "Ready made food",
-      "Packaged food",
-    ],
-    priceNgn: "10000",
-    priceUs: "40",
-    priceUk: "30",
-    priceGhana: "140",
-    ngeriaCode: "#",
-    ghanaCode: "GHS",
-    ukCode: "GBP",
-    usCode: "$",
-    priceCanada: "300",
-    canadaCode: "CAD",
-  },
-  {
-    id: 21,
-    style: "carousel1",
-    productImg: PunaYam,
-    collectionTitle: "Savor the Flavor: Unforgettable Culinary Creations",
-    collectionDecription:
-      "From savory starters to mouthwatering mains, our menu is a celebration of flavors from around the world. Try our signature [dish name], a symphony of perfectly balanced ingredients that will transport you to food paradise.",
-
-    // productCard
-    title: "Puna Yam",
-    categories: [
-      "Food",
-      "Health and wellness",
-      "Popular product",
-      "Recently added",
-      "Ready made food",
-      "Packaged food",
-    ],
-    priceNgn: "10000",
-    priceUs: "40",
-    priceUk: "30",
-    priceGhana: "140",
-    ngeriaCode: "#",
-    ghanaCode: "GHS",
-    ukCode: "GBP",
-    usCode: "$",
-    priceCanada: "300",
-    canadaCode: "CAD",
-  },
-  {
-    id: 22,
-    style: "carousel1",
-    productImg: DalgetyHoney,
-    collectionTitle: "Savor the Flavor: Unforgettable Culinary Creations",
-    collectionDecription:
-      "From savory starters to mouthwatering mains, our menu is a celebration of flavors from around the world. Try our signature [dish name], a symphony of perfectly balanced ingredients that will transport you to food paradise.",
-
-    // productCard
-    title: "Dalgety honey and ginger tea 40g",
-    categories: [
-      "Food",
-      "Health and wellness",
-      "Popular product",
-      "Recently added",
-      "Ready made food",
-      "Packaged food",
-    ],
-    priceNgn: "10000",
-    priceUs: "40",
-    priceUk: "30",
-    priceGhana: "140",
-    ngeriaCode: "#",
-    ghanaCode: "GHS",
-    ukCode: "GBP",
-    usCode: "$",
-    priceCanada: "300",
-    canadaCode: "CAD",
-  },
-  {
-    id: 23,
-    style: "carousel1",
-    // productImg: Product4,
-    collectionTitle: "Savor the Flavor: Unforgettable Culinary Creations",
-    collectionDecription:
-      "From savory starters to mouthwatering mains, our menu is a celebration of flavors from around the world. Try our signature [dish name], a symphony of perfectly balanced ingredients that will transport you to food paradise.",
-
-    // productCard
-    title: "Ofada Sauce",
-    categories: [
-      "Food",
-      "Health and wellness",
-      "Popular product",
-      "Recently added",
-      "Ready made food",
-      "Packaged food",
-    ],
-    priceNgn: "10000",
-    priceUs: "40",
-    priceUk: "30",
-    priceGhana: "140",
-    ngeriaCode: "#",
-    ghanaCode: "GHS",
-    ukCode: "GBP",
-    usCode: "$",
-    priceCanada: "300",
-    canadaCode: "CAD",
-  },
-  {
-    id: 24,
-    style: "carousel1",
-    // productImg: Product4,
-    collectionTitle: "Savor the Flavor: Unforgettable Culinary Creations",
-    collectionDecription:
-      "From savory starters to mouthwatering mains, our menu is a celebration of flavors from around the world. Try our signature [dish name], a symphony of perfectly balanced ingredients that will transport you to food paradise.",
-
-    // productCard
-    title: "Ofada Sauce",
-    categories: [
-      "Food",
       "Health and wellness",
       "Popular product",
       "Recently added",
@@ -2595,7 +2305,9 @@ export const newProduct = [
     collectionDecription:
       "Are you ready to embark on a gastronomic journey like no other? Look no further than Gourmet Delights – where every dish is a masterpiece crafted to perfection. Our chefs blend passion and creativity to bring you an exquisite dining experience that tantalizes your taste buds.",
   },
+];
 
+export const newlyAdded = [
   {
     id: 116,
     productImg: GerlicPaste,
@@ -2710,13 +2422,70 @@ export const newProduct = [
     collectionDecription:
       "Are you ready to embark on a gastronomic journey like no other? Look no further than Gourmet Delights – where every dish is a masterpiece crafted to perfection. Our chefs blend passion and creativity to bring you an exquisite dining experience that tantalizes your taste buds.",
   },
+  {
+    id: 122,
+    productImg: Cashews,
+    title: "Cashews",
+    priceNgn: "10000",
+    priceUs: "40",
+    priceUk: "30",
+    priceGhana: "140",
+    ngeriaCode: "#",
+    ghanaCode: "GHS",
+    ukCode: "GBP",
+    usCode: "$",
+    priceCanada: "300",
+    canadaCode: "CAD",
+    categories: ["Fruits and Vegetable"],
+    collectionTitle: "Food: Discover Culinary Excellence!",
+    collectionDecription:
+      "Are you ready to embark on a gastronomic journey like no other? Look no further than Gourmet Delights – where every dish is a masterpiece crafted to perfection. Our chefs blend passion and creativity to bring you an exquisite dining experience that tantalizes your taste buds.",
+  },
+  {
+    id: 123,
+    productImg: Peanut,
+    title: "Peanut",
+    priceNgn: "10000",
+    priceUs: "40",
+    priceUk: "30",
+    priceGhana: "140",
+    ngeriaCode: "#",
+    ghanaCode: "GHS",
+    ukCode: "GBP",
+    usCode: "$",
+    priceCanada: "300",
+    canadaCode: "CAD",
+    categories: ["Fruits and Vegetable"],
+    collectionTitle: "Food: Discover Culinary Excellence!",
+    collectionDecription:
+      "Are you ready to embark on a gastronomic journey like no other? Look no further than Gourmet Delights – where every dish is a masterpiece crafted to perfection. Our chefs blend passion and creativity to bring you an exquisite dining experience that tantalizes your taste buds.",
+  },
+  {
+    id: 121,
+    productImg: ZoboDrink,
+    title: "Zobo Drink",
+    priceNgn: "10000",
+    priceUs: "40",
+    priceUk: "30",
+    priceGhana: "140",
+    ngeriaCode: "#",
+    ghanaCode: "GHS",
+    ukCode: "GBP",
+    usCode: "$",
+    priceCanada: "300",
+    canadaCode: "CAD",
+    categories: ["Fruits and Vegetable"],
+    collectionTitle: "Food: Discover Culinary Excellence!",
+    collectionDecription:
+      "Are you ready to embark on a gastronomic journey like no other? Look no further than Gourmet Delights – where every dish is a masterpiece crafted to perfection. Our chefs blend passion and creativity to bring you an exquisite dining experience that tantalizes your taste buds.",
+  },
 ];
 
 export const allProduct = newProduct.concat(
   sliderCard,
   bigPack,
   smallPack,
-  readyMade
+  newlyAdded
 );
 
 export const categories = [
