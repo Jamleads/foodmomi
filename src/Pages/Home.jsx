@@ -13,13 +13,7 @@ import { selectProduct } from "../Features/SingleProuctSlice";
 import { successToast, warnToast } from "../Utilities/ToastMessage";
 import { selectedCatProduct } from "../Features/CategoryProductSlice";
 import { countryCurrency, countryPrice } from "../Utilities/PriceSelection";
-import {
-  allProduct,
-  bigPack,
-  newlyAdded,
-  readyMade,
-  sliderCard,
-} from "../Utilities/Dummy";
+import { allProduct, newlyAdded } from "../Utilities/Dummy";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -73,7 +67,6 @@ const Home = () => {
     const data = { categoryName: category, categoryProducts: theArray };
     dispatch(selectedCatProduct(data));
   };
-  console.log("first");
 
   return (
     <>

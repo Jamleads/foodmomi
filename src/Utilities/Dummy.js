@@ -2461,7 +2461,7 @@ export const newlyAdded = [
       "Are you ready to embark on a gastronomic journey like no other? Look no further than Gourmet Delights – where every dish is a masterpiece crafted to perfection. Our chefs blend passion and creativity to bring you an exquisite dining experience that tantalizes your taste buds.",
   },
   {
-    id: 121,
+    id: 124,
     productImg: ZoboDrink,
     title: "Zobo Drink",
     priceNgn: "10000",
