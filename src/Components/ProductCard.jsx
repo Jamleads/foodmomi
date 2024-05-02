@@ -20,7 +20,7 @@ const ProductCard = ({
         className={`product-img-wrap group w-full lg:h-[270px] p-5 bg-offSkyBlue hover:bg-[#F7F7F7] ease-in duration-300 flex justify-center relative`}
       >
         <Link to={`/shop/${title}`} onClick={onClickToDetails}>
-          <img src={productImg} alt="product-img" />
+          <img src={productImg} alt="product-img" className="h-[100%]" />
         </Link>
 
         <div className="absolute bottom-3 flex items-center justify-center gap-2 lg:opacity-0 transition-opacity duration-300 group-hover:opacity-100">
