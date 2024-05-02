@@ -56,7 +56,7 @@ const ProductCard = ({
           </h3>
 
           <p className="product-price text-primary font-bold text-xm group-hover:text-mainWhite text-center">
-            {countryCode} {price}
+            {countryCode || "$"} {price || "100"}
           </p>
         </div>
       </Link>
