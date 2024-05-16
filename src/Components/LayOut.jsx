@@ -8,6 +8,8 @@ import { getLocationByIp } from "../Features/Location.js";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import { FbIcon2, IgIcon2, LinkIcon, TwitterIconX } from "../assets/index.js";
+import PopModal from "./PopModal.jsx";
+import FormModal from "./FormModal.jsx";
 
 const LayOutKid = () => {
   const dispatch = useDispatch();
@@ -19,6 +21,9 @@ const LayOutKid = () => {
     dispatch(getLocationByIp());
   }, [dispatch]);
 
+  const [popUp, setPopUp] = useState(true);
+  const [formPopUp, setFormPopUp] = useState(false);
+
   return (
     <>
       <ToastContainer />
@@ -27,11 +32,33 @@ const LayOutKid = () => {
         <Loader color={"#354231"} width={1000} />
       </div> */}
       {/* ) : ( */}
+
       <div
         className={`relative w-full ${
           readyToShare ? "overflow-y-hidden h-[100vh]" : ""
         }`}
       >
+        {/* Pop up notification */}
+        <div className={`${!formPopUp && popUp ? "" : "hidden"}`}>
+          <PopModal
+            close={() => setPopUp(false)}
+            openForm={() => setFormPopUp(true)}
+          />
+        </div>
+        <div
+          onClick={() => setPopUp(false)}
+          className={`${!formPopUp && popUp ? "" : "hidden"} modal-backdrop`}
+        ></div>
+
+        {/* wait list form */}
+        <div className={`${formPopUp ? "" : "hidden"}`}>
+          <FormModal closeForm={() => setFormPopUp(false)} />
+        </div>
+        <div
+          onClick={() => setFormPopUp(false)}
+          className={`${formPopUp ? "" : "hidden"} modal-backdrop`}
+        ></div>
+
         <div className="">
           <Nav />
         </div>
@@ -136,6 +163,7 @@ const LayOutKid = () => {
           </div>
         </div>
       </div>
+
       {/* )} */}
     </>
   );

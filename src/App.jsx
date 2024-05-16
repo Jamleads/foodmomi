@@ -16,6 +16,7 @@ import FavProduct from "./Pages/FavProduct";
 import RequestForm from "./Pages/RequestForm";
 import ProductDetails from "./Components/ProductDetails";
 import CategoryProduct from "./Components/CategoryProduct";
+import PopModal from "./Components/PopModal";
 
 function App() {
   const route = createBrowserRouter(
