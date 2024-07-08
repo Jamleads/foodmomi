@@ -37,13 +37,13 @@ const Nav = () => {
 
   return (
     <div className="nav w-full fixed top-0 right-0 left-0 z-20 border-2">
-      <div className="nav-contact w-full bg-primary cursor-pointer">
+      {/* <div className="nav-contact w-full bg-primary cursor-pointer">
         <div className="flex items-center justify-center lg:text-[20px] text-[12px] text-center font-bold text-mainWhite ">
           <a href={AdvertMessage[adsMessage].to}>
             {AdvertMessage[adsMessage].text}
           </a>
         </div>
-      </div>
+      </div> */}
 
       <div className="nav-links w-full bg-mainWhite py-1">
         <div className="nav-links-wrap  lg:w-[80%] w-[100%] lg:mx-auto flex items-center lg:justify-between">

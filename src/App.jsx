@@ -18,24 +18,25 @@ import ProductDetails from "./Components/ProductDetails";
 import CategoryProduct from "./Components/CategoryProduct";
 import PopModal from "./Components/PopModal";
 
+const route = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<LayOut />}>
+      <Route index element={<Home />} />
+      <Route path="cart" element={<Cart />} />
+      <Route path="shop" element={<Shop />} />
+      <Route path="/shop/:productName" element={<ProductDetails />} />
+      <Route path="/:categories" element={<CategoryProduct />} />
+      <Route path="about_us" element={<AboutUs />} />
+      <Route path="favorite" element={<FavProduct />} />
+      <Route path="rewards" element={<Rewards />} />
+      <Route path="delivery" element={<Delivery />} />
+      <Route path="policy" element={<Policy />} />
+      <Route path="request" element={<RequestForm />} />
+    </Route>
+  )
+);
+
 function App() {
-  const route = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path="/" element={<LayOut />}>
-        <Route index element={<Home />} />
-        <Route path="cart" element={<Cart />} />
-        <Route path="shop" element={<Shop />} />
-        <Route path="/shop/:productName" element={<ProductDetails />} />
-        <Route path="/:categories" element={<CategoryProduct />} />
-        <Route path="about_us" element={<AboutUs />} />
-        <Route path="favorite" element={<FavProduct />} />
-        <Route path="rewards" element={<Rewards />} />
-        <Route path="delivery" element={<Delivery />} />
-        <Route path="policy" element={<Policy />} />
-        <Route path="request" element={<RequestForm />} />
-      </Route>
-    )
-  );
   return (
     <div>
       <RouterProvider router={route} />

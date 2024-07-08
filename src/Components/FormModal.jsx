@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { LogoBg } from "../assets";
 import Button from "./Button";
+import { useJoinWaitlistMutation } from "../services/waitlist";
+import { validateForm } from "../Utilities/validateForm";
+import { errorToast, successToast } from "../Utilities/ToastMessage";
 
 const FormModal = ({ closeForm }) => {
+  const [joinWaitlist, { isLoading }] = useJoinWaitlistMutation();
+
+  const [waitlist, setWaitlist] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    location: "",
+    heard_about_us: "",
+  });
+  const handleChnage = (e) => {
+    const { id, value } = e.target;
+    setWaitlist({ ...waitlist, [id]: value });
+  };
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+    if (!validateForm(waitlist)) {
+      errorToast("all feilds are required");
+    } else {
+      try {
+        const res = await joinWaitlist(waitlist).unwrap();
+        console.log("first attempt", res);
+        successToast("Thank you for joining our waitlist");
+      } catch (error) {
+        errorToast(error.data.message);
+      }
+      closeForm();
+    }
+  };
+
   return (
     <div>
       <div className="modal lg:w-[50%] w-[90%] mx-auto shadow-2xl">
@@ -39,6 +72,7 @@ const FormModal = ({ closeForm }) => {
                 type="text"
                 name="name"
                 id="name"
+                onChange={(e) => handleChnage(e)}
                 placeholder="Enter your name"
                 className="px-5 py-2 md:mt-3 mt-1 bg-transparent border-[1px] border-black w-full"
               />
@@ -48,8 +82,9 @@ const FormModal = ({ closeForm }) => {
               <input
                 required
                 type="tel"
-                name="phone_number"
-                id="phone_number"
+                name="phone"
+                id="phone"
+                onChange={(e) => handleChnage(e)}
                 placeholder="Enter your phone pumber"
                 className="px-5 py-2 md:mt-3 mt-1 bg-transparent border-[1px] border-black w-full"
               />
@@ -61,6 +96,7 @@ const FormModal = ({ closeForm }) => {
                 type="email"
                 id="email"
                 name="email"
+                onChange={(e) => handleChnage(e)}
                 placeholder="Enter your email"
                 className="px-5 py-2 md:mt-3 mt-1 bg-transparent border-[1px] border-black w-full"
               />
@@ -70,11 +106,13 @@ const FormModal = ({ closeForm }) => {
               <select
                 name="location"
                 id="location"
+                onChange={(e) => handleChnage(e)}
                 className="px-5 py-2 md:mt-3 mt-1 bg-transparent border-[1px] border-black w-full"
               >
                 <option value="" className="text-red">
                   Select option
                 </option>
+                {/* TODO: TRY GET LOCATION BASE ON THE COUNTRY MARKET WE ARE */}
                 <option value="nigeria">Nigeria</option>
                 <option value="unitesd state">United State</option>
                 <option value="kenya">United Kingdom</option>
@@ -89,8 +127,9 @@ const FormModal = ({ closeForm }) => {
               </label>
               <br />
               <select
-                name="how_did_you_hear_about_tech_kiddies"
-                id="how_did_you_hear_about_tech_kiddies"
+                name="heard_about_us"
+                id="heard_about_us"
+                onChange={(e) => handleChnage(e)}
                 className="px-5 py-2 md:mt-3 mt-1 bg-transparent border-[1px] border-black w-full"
               >
                 <option value="" className="font-lighter">
@@ -107,7 +146,7 @@ const FormModal = ({ closeForm }) => {
               <Button
                 btnText={"Join waitlist"}
                 btnStyle={"bg-primary text-white"}
-                btnClick={"submitform"}
+                btnClick={submitForm}
               />
             </div>
           </form>
