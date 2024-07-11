@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import StatusCode from "../Utilities/StatusCode";
+import StatusCode from "../utilities/StatusCode";
 // https://api.geoapify.com/v1/ipinfo?apiKey=YOUR_API_KEY
 // https://ip-api.com/docs
 const initialState = {

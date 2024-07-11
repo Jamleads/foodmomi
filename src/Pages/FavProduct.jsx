@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import ProductCard2 from "../Components/ProductCard2";
-import { countryCurrency, countryPrice } from "../Utilities/PriceSelection";
-import { duplicateCheck } from "../Utilities/DuplicateCheck";
-import { successToast, warnToast } from "../Utilities/ToastMessage";
-import { add } from "../Features/CartSlice";
+import ProductCard2 from "../components/ProductCard2";
+import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
+import { duplicateCheck } from "../utilities/DuplicateCheck";
+import { successToast, warnToast } from "../utilities/ToastMessage";
+import { add } from "../features/CartSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 const FavProduct = () => {

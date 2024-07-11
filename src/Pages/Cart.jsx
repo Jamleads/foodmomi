@@ -1,9 +1,9 @@
-import Button from "../Components/Button";
+import Button from "../components/Button";
 import { useDispatch, useSelector } from "react-redux";
-import CartItem from "../Components/CartItem";
-import { countryCurrency, countryPrice } from "../Utilities/PriceSelection";
-import { clear, remove } from "../Features/CartSlice";
-import { errorToast, successToast } from "../Utilities/ToastMessage";
+import CartItem from "../components/CartItem";
+import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
+import { clear, remove } from "../features/CartSlice";
+import { errorToast, successToast } from "../utilities/ToastMessage";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CheckList, CheckMark, ClockIcon } from "../assets";

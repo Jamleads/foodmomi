@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CarouselCard from "./CarouselCard";
-import { sliderCard } from "../Utilities/Dummy";
+import { sliderCard } from "../utilities/Dummy";
 
 const Carousel = () => {
   const settings = {

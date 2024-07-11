@@ -1,4 +1,4 @@
-import Accordion from "../Components/Accorion";
+import Accordion from "../components/Accorion";
 const Rewards = () => {
   const accordionItems = [
     {

@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { LogoBg } from "../assets";
-import Button from "./Button";
+import { LogoBg, waitlistBanner } from "../assets";
 import { useJoinWaitlistMutation } from "../services/waitlist";
-import { validateForm } from "../Utilities/validateForm";
-import { errorToast, successToast } from "../Utilities/ToastMessage";
+import { validateForm } from "../utilities/validateForm";
+import { errorToast, successToast } from "../utilities/ToastMessage";
+import BarsLoader from "../utilities/BarsLoader";
+import { useNavigate } from "react-router-dom";
 
-const FormModal = ({ closeForm }) => {
-  const [joinWaitlist, { isLoading }] = useJoinWaitlistMutation();
-
+const FormModal = () => {
+  const navigate = useNavigate();
+  const [joinWaitlist, { isLoading: test }] = useJoinWaitlistMutation();
+  const [isLoading, setIsLoading] = useState(false);
   const [waitlist, setWaitlist] = useState({
     name: "",
     phone: "",
@@ -23,30 +25,32 @@ const FormModal = ({ closeForm }) => {
   const submitForm = async (e) => {
     e.preventDefault();
     if (!validateForm(waitlist)) {
-      errorToast("all feilds are required");
+      errorToast("All fields are required");
     } else {
+      setIsLoading(true);
       try {
-        const res = await joinWaitlist(waitlist).unwrap();
-        console.log("first attempt", res);
-        successToast("Thank you for joining our waitlist");
+        await joinWaitlist(waitlist).unwrap();
+        successToast("You have joined waitlist");
+        setIsLoading(false);
+        navigate("/shop");
       } catch (error) {
-        errorToast(error.data.message);
+        console.log("the error is", error);
       }
-      closeForm();
     }
   };
 
   return (
-    <div>
-      <div className="modal lg:w-[50%] w-[90%] mx-auto shadow-2xl">
-        <div className="relative md:w-[80%] w-[90%] mx-auto md:py-10 py-5">
-          <div
-            className="absolute right-0 text-5xl cursor-pointerx"
-            onClick={closeForm}
-          >
-            X
-          </div>
+    <div className="md:flex md:h-[90vh]">
+      <div className="md:w-3/5 w-full h-full">
+        <img
+          src={waitlistBanner}
+          alt="waitlistBanner"
+          className="w-full h-full"
+        />
+      </div>
 
+      <div className="md:w-2/5 w-full flex items-center justify-center">
+        <div className="relative md:w-[80%] w-[90%] mx-auto md:py-10 py-5">
           <div className="brand">
             <img src={LogoBg} alt="" className="w-[100px] mx-auto" />
           </div>
@@ -143,11 +147,19 @@ const FormModal = ({ closeForm }) => {
             </div>
 
             <div className="text-center">
-              <Button
-                btnText={"Join waitlist"}
-                btnStyle={"bg-primary text-white"}
-                btnClick={submitForm}
-              />
+              <button
+                disabled={isLoading}
+                className={`px-8 py-3 text-white ${
+                  isLoading ? "bg-[#aca9a9]" : "bg-primary"
+                }`}
+                onClick={submitForm}
+              >
+                {isLoading ? (
+                  <BarsLoader height={20} color={"#354231"} />
+                ) : (
+                  "Join waitlist"
+                )}
+              </button>
             </div>
           </form>
         </div>

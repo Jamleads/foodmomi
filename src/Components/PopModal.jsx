@@ -2,7 +2,7 @@ import React from "react";
 import Button from "./Button";
 import { BrandProduct, LogoBg } from "../assets";
 
-const PopModal = ({ close, openForm }) => {
+const PopModal = ({ openForm }) => {
   return (
     <>
       <div className="modal lg:w-[70%] w-[90%] mx-auto shadow-2xl">
@@ -41,25 +41,6 @@ const PopModal = ({ close, openForm }) => {
               </button>
             </p>
 
-            {/* <div class="subscribe md:w-[60%] mx-auto">
-              <form action="" class="flex items-center justify-between">
-                <input
-                  type="email"
-                  required
-                  placeholder="Enter your email to join waitlist"
-                  class="px-5 py-2 md:border-2 border-[1px] border-primary md:w-[70%] w-[60%] bg-transparent md:text-base text-xs"
-                />
-                <div class="flex items-center justify-center md:mt-0 mt-1">
-                  <button
-                    className={`md:px-8 px-3 md:py-3 py-2 bg-primary text-white md:text-base text-xs `}
-                    onClick={"waitlist"}
-                  >
-                    Join Waitlist
-                  </button>
-                </div>
-              </form>
-            </div> */}
-
             <p className="md:text-base text-xs">
               Stay connected with us on social media to be the first to know
               about our launch and to explore more about African cuisine. Join
@@ -82,9 +63,9 @@ const PopModal = ({ close, openForm }) => {
 
             <div>
               <Button
-                btnText={"Close"}
+                btnText={"Join waitlist"}
                 btnStyle={"bg-primary text-white"}
-                btnClick={close}
+                btnClick={openForm}
               />
             </div>
           </div>

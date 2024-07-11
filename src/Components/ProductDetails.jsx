@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { countryCurrency, countryPrice } from "../Utilities/PriceSelection";
-import { duplicateCheck } from "../Utilities/DuplicateCheck";
+import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
+import { duplicateCheck } from "../utilities/DuplicateCheck";
 import { useNavigate } from "react-router-dom";
-import { successToast, warnToast } from "../Utilities/ToastMessage";
-import { add } from "../Features/CartSlice";
+import { successToast, warnToast } from "../utilities/ToastMessage";
+import { add } from "../features/CartSlice";
 import Button from "./Button";
 
 const ProductDetails = () => {

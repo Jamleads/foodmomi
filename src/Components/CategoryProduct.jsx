@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
 import { useEffect } from "react";
-import { countryCurrency, countryPrice } from "../Utilities/PriceSelection";
-import { duplicateCheck } from "../Utilities/DuplicateCheck";
-import { successToast, warnToast } from "../Utilities/ToastMessage";
+import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
+import { duplicateCheck } from "../utilities/DuplicateCheck";
+import { successToast, warnToast } from "../utilities/ToastMessage";
 import { useNavigate } from "react-router-dom";
-import { addFav } from "../Features/FavSlice";
-import { add } from "../Features/CartSlice";
-import { selectProduct } from "../Features/SingleProuctSlice";
+import { addFav } from "../features/FavSlice";
+import { add } from "../features/CartSlice";
+import { selectProduct } from "../features/SingleProuctSlice";
 
 const CategoryProduct = () => {
   const dispatch = useDispatch();

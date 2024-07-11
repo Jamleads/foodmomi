@@ -1,19 +1,19 @@
 /* eslint-disable no-unused-vars */
 import { useEffect } from "react";
-import { add } from "../Features/CartSlice";
-import { addFav } from "../Features/FavSlice";
-import Carousel from "../Components/Carousel";
+import { add } from "../features/CartSlice";
+import { addFav } from "../features/FavSlice";
+import Carousel from "../components/Carousel";
 import "react-toastify/dist/ReactToastify.css";
-import ProductCard from "../Components/ProductCard";
+import ProductCard from "../components/ProductCard";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../Features/productSlice";
-import { duplicateCheck } from "../Utilities/DuplicateCheck";
-import { selectProduct } from "../Features/SingleProuctSlice";
-import { successToast, warnToast } from "../Utilities/ToastMessage";
-import { selectedCatProduct } from "../Features/CategoryProductSlice";
-import { countryCurrency, countryPrice } from "../Utilities/PriceSelection";
-import { allProduct, newlyAdded } from "../Utilities/Dummy";
+import { getProducts } from "../features/productSlice";
+import { duplicateCheck } from "../utilities/DuplicateCheck";
+import { selectProduct } from "../features/SingleProuctSlice";
+import { successToast, warnToast } from "../utilities/ToastMessage";
+import { selectedCatProduct } from "../features/CategoryProductSlice";
+import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
+import { allProduct, newlyAdded } from "../utilities/Dummy";
 
 const Home = () => {
   const dispatch = useDispatch();

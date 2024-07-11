@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import ProductCard from "../Components/ProductCard";
-import { allProduct } from "../Utilities/Dummy";
-import { countryCurrency, countryPrice } from "../Utilities/PriceSelection";
-import { duplicateCheck } from "../Utilities/DuplicateCheck";
-import { successToast, warnToast } from "../Utilities/ToastMessage";
-import { addFav } from "../Features/FavSlice";
-import { add } from "../Features/CartSlice";
+import ProductCard from "../components/ProductCard";
+import { allProduct } from "../utilities/Dummy";
+import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
+import { duplicateCheck } from "../utilities/DuplicateCheck";
+import { successToast, warnToast } from "../utilities/ToastMessage";
+import { addFav } from "../features/FavSlice";
+import { add } from "../features/CartSlice";
 import { useNavigate } from "react-router-dom";
-import { selectProduct } from "../Features/SingleProuctSlice";
+import { selectProduct } from "../features/SingleProuctSlice";
 import { useEffect } from "react";
 
 const Shop = () => {

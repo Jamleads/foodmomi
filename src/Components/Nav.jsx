@@ -1,10 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { AdvertMessage, allProduct, categories } from "../Utilities/Dummy";
+import { AdvertMessage, allProduct, categories } from "../utilities/Dummy";
 import { CartIcon2, FavIcon2, LeftIcon, LogoBg, SearchIcon } from "../assets";
 import { useDispatch, useSelector } from "react-redux";
 import { Pork } from "../assets/img";
-import { selectedCatProduct } from "../Features/CategoryProductSlice";
+import { selectedCatProduct } from "../features/CategoryProductSlice";
 
 const Nav = () => {
   const dispatch = useDispatch();

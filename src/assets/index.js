@@ -77,3 +77,4 @@ export { default as Peanut } from "../assets/Peanut.jpeg";
 export { default as ZoboDrink } from "../assets/Zobo_drink.jpeg";
 
 export { default as BrandProduct } from "../assets/Brand_product.pdf";
+export { default as waitlistBanner } from "../assets/waitlist.jpg";

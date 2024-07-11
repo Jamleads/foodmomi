@@ -4,25 +4,26 @@ import {
   RouterProvider,
   Route,
 } from "react-router-dom";
-import Shop from "./Pages/Shop";
-import Home from "./Pages/Home";
-import Cart from "./Pages/Cart";
-import Policy from "./Pages/Policy";
-import Rewards from "./Pages/Rewards";
-import AboutUs from "./Pages/AboutUs";
-import Delivery from "./Pages/Delivery";
-import LayOut from "./Components/LayOut";
-import FavProduct from "./Pages/FavProduct";
-import RequestForm from "./Pages/RequestForm";
-import ProductDetails from "./Components/ProductDetails";
-import CategoryProduct from "./Components/CategoryProduct";
-import PopModal from "./Components/PopModal";
+import Shop from "./pages/Shop";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import Policy from "./pages/Policy";
+import Rewards from "./pages/Rewards";
+import AboutUs from "./pages/AboutUs";
+import Delivery from "./pages/Delivery";
+import LayOut from "./components/LayOut";
+import FavProduct from "./pages/FavProduct";
+import RequestForm from "./pages/RequestForm";
+import ProductDetails from "./components/ProductDetails";
+import CategoryProduct from "./components/CategoryProduct";
+import FormModal from "./components/FormModal";
 
 const route = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<LayOut />}>
       <Route index element={<Home />} />
       <Route path="cart" element={<Cart />} />
+      <Route path="waitlist" element={<FormModal />} />
       <Route path="shop" element={<Shop />} />
       <Route path="/shop/:productName" element={<ProductDetails />} />
       <Route path="/:categories" element={<CategoryProduct />} />
