@@ -13,10 +13,3 @@ const waitlistApi = api.injectEndpoints({
 });
 
 export const { useJoinWaitlistMutation } = waitlistApi;
-
-// getBeneficiaries: builder.query({
-//     query: () => ({
-//       url: "/beneficiaries/list",
-//       method: "GET",
-//     }),
-//   }),

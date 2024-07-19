@@ -9,18 +9,28 @@ import { Provider, useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import { FbIcon2, IgIcon2, LinkIcon, TwitterIconX } from "../assets/index.js";
 import PopModal from "./PopModal.jsx";
+import { useGetAllProductQuery } from "../services/product.js";
+import { setAllProducts } from "../features/AllProductSlice.js";
 
 const LayOutKid = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [popUp, setPopUp] = useState(true);
+  const state = useSelector((state) => state);
+  const { data, isLoading } = useGetAllProductQuery();
   const [readyToShare, setReadyToShare] = useState(false);
   const locationStatus = useSelector((state) => state.location.status);
 
   useEffect(() => {
     dispatch(getLocationByIp());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      dispatch(setAllProducts(data?.products));
+    }
+  }, [data, isLoading]);
 
   return (
     <>
@@ -36,7 +46,7 @@ const LayOutKid = () => {
             readyToShare ? "overflow-y-hidden h-[100vh]" : ""
           }`}
         >
-          <div
+          {/* <div
             className={`${
               pathname !== "/waitlist" && pathname !== "/shop" && popUp
                 ? ""
@@ -52,7 +62,7 @@ const LayOutKid = () => {
                 ? ""
                 : "hidden"
             } modal-backdrop`}
-          ></div>
+          ></div> */}
 
           {/* LEC: NAVBAR */}
           <div className="">

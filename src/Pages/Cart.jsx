@@ -117,6 +117,7 @@ const Cart = () => {
               <CartItem
                 key={item.id}
                 {...item}
+                productImg={item.imageUrl}
                 price={countryPrice(item, country)}
                 removeItem={() => removeItem(item.id)}
                 countryCode={countryCurrency(item, country)}

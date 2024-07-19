@@ -15,7 +15,7 @@ export const countryPrice = (product, country) => {
 };
 export const countryCurrency = (product, country) => {
   if (country === "Nigeria") {
-    return product?.ngeriaCode;
+    return product?.nigeriaCode;
   } else if (country === "Ghana") {
     return product?.ghanaCode;
   } else if (country === "United Kingdom") {

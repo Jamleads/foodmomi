@@ -40,7 +40,7 @@ const ProductDetails = () => {
       ) : (
         <div className="lg:flex gap-10">
           <div className="zoom-wrapper lg:h-[500px] lg:w-1/2 bg-white shadow-xl border-t-2 border-primary flex items-center justify-center">
-            <img src={selectedProduct?.productImg} alt="" />
+            <img src={selectedProduct?.imageUrl} alt="" />
           </div>
 
           <div className="lg:w-1/2 lg:p-0 p-5">

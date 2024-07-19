@@ -7,27 +7,24 @@ import "react-toastify/dist/ReactToastify.css";
 import ProductCard from "../components/ProductCard";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../features/productSlice";
 import { duplicateCheck } from "../utilities/DuplicateCheck";
 import { selectProduct } from "../features/SingleProuctSlice";
 import { successToast, warnToast } from "../utilities/ToastMessage";
 import { selectedCatProduct } from "../features/CategoryProductSlice";
 import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
-import { allProduct, newlyAdded } from "../utilities/Dummy";
+import { newlyAdded } from "../utilities/Dummy";
 
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const theState = useSelector((state) => state);
+  const allProduct = theState?.allProducts.allProducts;
+  const cart = theState?.cart;
+  const favorite = theState?.fav;
 
-  const cart = useSelector((state) => state.cart);
-  const favorite = useSelector((state) => state.fav);
-
-  // // // // // Scroll // // // // //
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  // ///////// country ..///////
   const country = useSelector(
     (state) => state.location?.location?.country?.name
   );
@@ -73,7 +70,7 @@ const Home = () => {
       <Carousel />
 
       <div className="relative lg:w-[80%] mx-auto my-20 overflow-x-hidden flex flex-col gap-20">
-        <div>
+        {/* <div>
           <h1 className="text-2xl font-bold mb-6">RECENTLY ADDED</h1>
           <div
             className={`lg:px-0 px-5 grid lg:grid-cols-4 grid-cols-2 gap-x-5 gap-y-10`}
@@ -82,6 +79,7 @@ const Home = () => {
               <div key={product.id}>
                 <ProductCard
                   {...product}
+                  // productImg={product.imageUrl}
                   price={countryPrice(product, country)}
                   countryCode={countryCurrency(product, country)}
                   onClickCart={() => addToCart(product)}
@@ -99,7 +97,7 @@ const Home = () => {
               </button>
             </Link>
           </div>
-        </div>
+        </div> */}
 
         <div>
           <h1 className="text-2xl font-bold mb-6">Meat and Seafoods</h1>
@@ -107,14 +105,14 @@ const Home = () => {
             className={`lg:px-0 px-5 grid lg:grid-cols-4 grid-cols-2 gap-x-5 gap-y-10`}
           >
             {allProduct
-              .filter((item) => item.categories?.includes("Meat and Seafoods"))
+              .filter((item) => item.categories?.includes("meat and seafood"))
               .map((product) => (
                 <div key={product.id}>
                   <ProductCard
                     {...product}
+                    productImg={product.imageUrl}
                     price={countryPrice(product, country)}
                     countryCode={countryCurrency(product, country)}
-                    // Actions
                     onClickCart={() => addToCart(product)}
                     onClickFav={() => addToFav(product)}
                     onClickToDetails={() => handleProductClick(product)}
@@ -135,7 +133,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div>
+        {/* <div>
           <h1 className="text-2xl font-bold mb-6">Condiments</h1>
           <div
             className={`lg:px-0 px-5 grid lg:grid-cols-4 grid-cols-2 gap-x-5 gap-y-10`}
@@ -203,7 +201,7 @@ const Home = () => {
               </button>
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../components/ProductCard";
-import { allProduct } from "../utilities/Dummy";
+// import { allProduct } from "../utilities/Dummy";
 import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
 import { duplicateCheck } from "../utilities/DuplicateCheck";
 import { successToast, warnToast } from "../utilities/ToastMessage";
@@ -16,6 +16,8 @@ const Shop = () => {
   const country = useSelector(
     (state) => state.location?.location?.country?.name
   );
+  const theState = useSelector((state) => state);
+  const allProduct = theState?.allProducts.allProducts;
   const cart = useSelector((state) => state.cart);
   const favorite = useSelector((state) => state.fav);
 
@@ -62,6 +64,7 @@ const Shop = () => {
           <div key={[product.id]}>
             <ProductCard
               {...product}
+              productImg={product.imageUrl}
               price={countryPrice(product, country)}
               countryCode={countryCurrency(product, country)}
               onClickCart={() => addToCart(product)}

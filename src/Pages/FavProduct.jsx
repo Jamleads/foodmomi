@@ -37,10 +37,11 @@ const FavProduct = () => {
         <div className="lg:w-[80%] mx-auto mt-5">
           <h1 className="text-2xl font-bold">FAVOURITES PRODUCTS</h1>
           <div className="lg:grid grid-cols-2 lg:gap-x-5 lg:gap-y-10 my-10">
-            {favorite.map((favProduct) => (
+            {favorite.map((favProduct, index) => (
               <ProductCard2
-                key={favProduct.id}
+                key={index}
                 {...favProduct}
+                productImg={favProduct.imageUrl}
                 price={countryPrice(favProduct, country)}
                 countryCode={countryCurrency(favProduct, country)}
                 description={favProduct.collectionDecription}
