@@ -64,13 +64,13 @@ const ProductDetails = () => {
             </div>
 
             <div className="flex gap-3 my-3">
-              <div className="lg:w-[80px] w-[50px] flex items-center justify-center bg-[#F0EFF2]">
+              {/* <div className="lg:w-[80px] w-[50px] flex items-center justify-center bg-[#F0EFF2]">
                 <input
                   type="number"
                   className="w-1/2 bg-transparent text-center text-primary font-bold"
                   placeholder="1"
                 />
-              </div>
+              </div> */}
 
               <Button
                 btnClick={() => addToCart(selectedProduct)}

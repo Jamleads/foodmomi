@@ -94,9 +94,10 @@ export const sliderCard = [
     id: 7,
     style: "carousel1",
     productImg: Product1,
-    collectionTitle: "Food: Discover Culinary Excellence!",
+    collectionTitle:
+      "FoodsbyMomi: Premium Quality Foods for Households and Businesses Worldwide",
     collectionDecription:
-      "Are you ready to embark on a gastronomic journey like no other? Look no further than Gourmet Delights – where every dish is a masterpiece crafted to perfection. Our chefs blend passion and creativity to bring you an exquisite dining experience that tantalizes your taste buds.",
+      "We provide hygienically processed and packaged, premium FDA-approved foods for the global export market, fully compliant with all regulatory standards. Our offerings include cost-effective B2B solutions such as contract manufacturing and white labeling, tailored for African and Caribbean stores worldwide, as well as small-scale food ventures. FoodsbyMomi products are perfect for both household consumers and businesses.",
 
     // productCard
     title: "POUNDO YARM FLOUR 'IYAN'",
@@ -126,9 +127,9 @@ export const sliderCard = [
     style: "carousel1",
     productImg: Product2,
     collectionTitle:
-      "Special Offer: First 50 Guests Receive a Complimentary Dessert!",
+      "FoodsbyMomi: Premium Quality Foods for Households and Businesses Worldwide",
     collectionDecription:
-      "Don't miss out on the chance to experience culinary excellence at Gourmet Delights. Reserve your table now, and be one of the first 50 guests to enjoy a complimentary dessert that will sweeten your dining adventure.",
+      "We provide hygienically processed and packaged, premium FDA-approved foods for the global export market, fully compliant with all regulatory standards. Our offerings include cost-effective B2B solutions such as contract manufacturing and white labeling, tailored for African and Caribbean stores worldwide, as well as small-scale food ventures. FoodsbyMomi products are perfect for both household consumers and businesses.",
 
     // productCard
     title: "EGGPLANT SWALLOW",
@@ -157,9 +158,10 @@ export const sliderCard = [
     id: 9,
     style: "carousel1",
     productImg: Product3,
-    collectionTitle: "Savor the Flavor: Unforgettable Culinary Creations",
+    collectionTitle:
+      "FoodsbyMomi: Premium Quality Foods for Households and Businesses Worldwide",
     collectionDecription:
-      "From savory starters to mouthwatering mains, our menu is a celebration of flavors from around the world. Try our signature [dish name], a symphony of perfectly balanced ingredients that will transport you to food paradise.",
+      "We provide hygienically processed and packaged, premium FDA-approved foods for the global export market, fully compliant with all regulatory standards. Our offerings include cost-effective B2B solutions such as contract manufacturing and white labeling, tailored for African and Caribbean stores worldwide, as well as small-scale food ventures. FoodsbyMomi products are perfect for both household consumers and businesses.",
 
     // productCard
     title: "CABBAGE SWALLOW",
@@ -189,7 +191,7 @@ export const sliderCard = [
     productImg: Product4,
     collectionTitle: "Savor the Flavor: Unforgettable Culinary Creations",
     collectionDecription:
-      "From savory starters to mouthwatering mains, our menu is a celebration of flavors from around the world. Try our signature [dish name], a symphony of perfectly balanced ingredients that will transport you to food paradise.",
+      "We provide hygienically processed and packaged, premium FDA-approved foods for the global export market, fully compliant with all regulatory standards. Our offerings include cost-effective B2B solutions such as contract manufacturing and white labeling, tailored for African and Caribbean stores worldwide, as well as small-scale food ventures. FoodsbyMomi products are perfect for both household consumers and businesses.",
 
     // productCard
     title: "POUNDO YARM FLOUR",
@@ -219,7 +221,7 @@ export const sliderCard = [
     productImg: Product4,
     collectionTitle: "Savor the Flavor: Unforgettable Culinary Creations",
     collectionDecription:
-      "From savory starters to mouthwatering mains, our menu is a celebration of flavors from around the world. Try our signature [dish name], a symphony of perfectly balanced ingredients that will transport you to food paradise.",
+      "We provide hygienically processed and packaged, premium FDA-approved foods for the global export market, fully compliant with all regulatory standards. Our offerings include cost-effective B2B solutions such as contract manufacturing and white labeling, tailored for African and Caribbean stores worldwide, as well as small-scale food ventures. FoodsbyMomi products are perfect for both household consumers and businesses.",
 
     // productCard
     title: "POUNDO YARM FLOUR",
@@ -249,7 +251,7 @@ export const sliderCard = [
     productImg: Product4,
     collectionTitle: "Savor the Flavor: Unforgettable Culinary Creations",
     collectionDecription:
-      "From savory starters to mouthwatering mains, our menu is a celebration of flavors from around the world. Try our signature [dish name], a symphony of perfectly balanced ingredients that will transport you to food paradise.",
+      "We provide hygienically processed and packaged, premium FDA-approved foods for the global export market, fully compliant with all regulatory standards. Our offerings include cost-effective B2B solutions such as contract manufacturing and white labeling, tailored for African and Caribbean stores worldwide, as well as small-scale food ventures. FoodsbyMomi products are perfect for both household consumers and businesses.",
 
     // productCard
     title: "POUNDO YARM FLOUR",

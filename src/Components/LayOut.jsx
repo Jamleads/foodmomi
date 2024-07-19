@@ -36,7 +36,6 @@ const LayOutKid = () => {
             readyToShare ? "overflow-y-hidden h-[100vh]" : ""
           }`}
         >
-          {/* LEC: Pop up notification */}
           <div
             className={`${
               pathname !== "/waitlist" && pathname !== "/shop" && popUp
@@ -63,7 +62,7 @@ const LayOutKid = () => {
           {/* LEC: PATHNAME AND OUTLET */}
           <div className="mt-[115px]">
             {pathname !== "/" && pathname !== "/waitlist" ? (
-              <div className="show h-[20vh] w-full flex items-center bg-[#F2F0FF]">
+              <div className="show h-[16vh] w-full flex items-center bg-[#F2F0FF]">
                 <div className="w-[70%] mx-auto">
                   <h1 className="text-2xl font-bold text-primary capitalize">
                     {pathname.slice(1).replace(/%20/g, " ")}

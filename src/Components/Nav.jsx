@@ -1,7 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { AdvertMessage, allProduct, categories } from "../utilities/Dummy";
-import { CartIcon2, FavIcon2, LeftIcon, LogoBg, SearchIcon } from "../assets";
+import {
+  CartIcon2,
+  FavIcon2,
+  LeftIcon,
+  LogoBg,
+  PriceList,
+  SearchIcon,
+} from "../assets";
 import { useDispatch, useSelector } from "react-redux";
 import { Pork } from "../assets/img";
 import { selectedCatProduct } from "../features/CategoryProductSlice";
@@ -11,6 +18,7 @@ const Nav = () => {
   const { pathname } = useLocation();
   const [adsMessage, setAdsMessage] = useState(0);
   const [openCategories, setOpenCategories] = useState(false);
+  const [openPages, setOpenPages] = useState(false);
   const cartProduct = useSelector((state) => state.cart);
   const favSlice = useSelector((state) => state.fav);
   const country = useSelector(
@@ -25,6 +33,9 @@ const Nav = () => {
 
   const onCategories = () => {
     setOpenCategories(!openCategories);
+  };
+  const onPages = () => {
+    setOpenPages(!openPages);
   };
 
   const handleCategoryClick = (category) => {
@@ -159,6 +170,11 @@ const Nav = () => {
               </Link>
             </li>
             <li>
+              <a href={PriceList} target="_blank">
+                Price List
+              </a>
+            </li>
+            <li>
               <Link
                 to="about_us"
                 className={
@@ -193,6 +209,94 @@ const Nav = () => {
               </Link>
             </li>
           </ul>
+
+          {/* On mobile */}
+          <div
+            className={`md:hidden relative px-5 py-1 bg-white flex items-center gap-3 ${
+              openCategories ? "border-b-[10px] border-secondary" : ""
+            }`}
+            onMouseLeave={onPages}
+            onMouseEnter={onPages}
+          >
+            <img
+              src={LeftIcon}
+              alt="leftIcon"
+              className={`${openPages ? "rotate" : ""} rotate-180`}
+            />
+            <p>PAGES</p>
+
+            <div
+              className={`${
+                openPages ? "" : "hidden"
+              } absolute top-10 left-0 bg-white shadow-lg lg:w-[300px] w-full p-3`}
+            >
+              <ul className="flex flex-col gap-2">
+                <li>
+                  <Link
+                    to="/"
+                    className={
+                      pathname === "/" ? "text-secondary font-bold" : ""
+                    }
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="shop"
+                    className={
+                      pathname.includes("/shop")
+                        ? "text-secondary font-bold"
+                        : ""
+                    }
+                  >
+                    Shop
+                  </Link>
+                </li>
+                <li>
+                  <a href={PriceList} target="_blank">
+                    Price List
+                  </a>
+                </li>
+                <li>
+                  <Link
+                    to="about_us"
+                    className={
+                      pathname.includes("/about_us")
+                        ? "text-secondary font-bold"
+                        : ""
+                    }
+                  >
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="rewards"
+                    className={
+                      pathname.includes("/rewards")
+                        ? "text-secondary font-bold"
+                        : ""
+                    }
+                  >
+                    Rewards
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="policy"
+                    className={
+                      pathname.includes("/policy")
+                        ? "text-secondary font-bold"
+                        : ""
+                    }
+                  >
+                    Privacy & Policy
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

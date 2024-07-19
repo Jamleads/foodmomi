@@ -57,7 +57,7 @@ const CategoryProduct = () => {
 
   return (
     <div className="relative lg:w-[70%] mx-auto my-20">
-      <h1 className="text-2xl font-bold mb-6">{catProducts.categoryName}</h1>
+      <h1 className="text-2xl font-bold mb-6">{catProducts?.categoryName}</h1>
       <div
         className={`lg:px-0 px-5 grid lg:grid-cols-4 grid-cols-2 gap-x-5 gap-y-10`}
       >

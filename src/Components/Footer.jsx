@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom";
 import { FbIcon, IgIcon, LogoBg, TwitterIcon2 } from "../assets";
+import { categories, allProduct } from "../utilities/Dummy";
+import { useDispatch } from "react-redux";
+import { selectedCatProduct } from "../features/CategoryProductSlice";
 
 const Footer = () => {
+  const dispatch = useDispatch();
+  const handleCategoryClick = (category) => {
+    const theArray = allProduct.filter((item) =>
+      item.categories.includes(category)
+    );
+    const data = { categoryName: category, categoryProducts: theArray };
+    dispatch(selectedCatProduct(data));
+  };
   return (
     <div className="footer bg-[#EEEFFB]">
       <div className="text-center w-[70%] mx-auto">
@@ -43,21 +54,17 @@ const Footer = () => {
           <div className="footer-links-wrap lg:w-1/5">
             <p className="text-[#000000] text-xl font-bold">Catagories</p>
             <ul className="mt-5">
-              <a href="#">
-                <li className="text-[#8A8FB9] text-sm">Health and wellness</li>
-              </a>
-              <a href="#">
-                <li className="text-[#8A8FB9] text-sm mt-2">Popular product</li>
-              </a>
-              <a href="#">
-                <li className="text-[#8A8FB9] text-sm mt-2">Recently added</li>
-              </a>
-              <a href="#">
-                <li className="text-[#8A8FB9] text-sm mt-2">Ready made food</li>
-              </a>
-              <a href="#">
-                <li className="text-[#8A8FB9] text-sm mt-2">Packaged food</li>
-              </a>
+              {categories.map((category) => (
+                <Link
+                  key={category.id}
+                  to={`/${category.category}`}
+                  onClick={() => handleCategoryClick(category.category)}
+                >
+                  <li className="text-[#8A8FB9] py-1 text-sm">
+                    {category.category}
+                  </li>
+                </Link>
+              ))}
             </ul>
           </div>
 
@@ -115,7 +122,7 @@ const Footer = () => {
       <div className="footer-bottom bg-[#E7E4F8] lg:p-0 px-5 py-5">
         <div className="footer-button-wrap flex items-center justify-between py-2 lg:w-[60%] mx-auto">
           <p className="text-[#8A8FB9] text-sm">
-            &copy;<a href="/">Food_By_Momi</a> - All Rights Reserved
+            &copy;<a href="/">Foodsbymomi</a> - All Rights Reserved
           </p>
           <div className="flex items-center gap-3 rounded-full">
             <div className="git bg-[#151875] w-[25px] h-[25px] flex items-center justify-center rounded-full">
