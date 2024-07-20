@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FbIcon, IgIcon, LogoBg, TwitterIcon2 } from "../assets";
+import { FbIcon, IgIcon, LogoBg, PriceList, TwitterIcon2 } from "../assets";
 import { categories, allProduct } from "../utilities/Dummy";
 import { useDispatch } from "react-redux";
 import { selectedCatProduct } from "../features/CategoryProductSlice";
@@ -91,29 +91,32 @@ const Footer = () => {
 
           <div className="footer-links-wrap lg:w-1/5">
             <p className="text-[#000000] text-xl font-bold">Pages</p>
-            <ul className="mt-5">
-              <a href="#">
-                <li className="text-[#8A8FB9] text-sm">Blog</li>
-              </a>
-              <a href="#">
-                <li className="text-[#8A8FB9] text-sm mt-2">Browse the Shop</li>
-              </a>
-              <a href="#">
-                <li className="text-[#8A8FB9] text-sm mt-2">Category</li>
-              </a>
-              <a href="#">
-                <li className="text-[#8A8FB9] text-sm mt-2">Pre-Built Pages</li>
-              </a>
-              <a href="#">
-                <li className="text-[#8A8FB9] text-sm mt-2">
-                  Visual Composer Elements
-                </li>
-              </a>
-              <a href="#">
-                <li className="text-[#8A8FB9] text-sm mt-2">
-                  WooCommerce Pages
-                </li>
-              </a>
+            <ul className="mt-5 flex flex-col gap-2">
+              <li className="text-[#8A8FB9] text-sm">
+                <Link to="/">Home</Link>
+              </li>
+              <li className="text-[#8A8FB9] text-sm">
+                <Link to="shop">Shop</Link>
+              </li>
+              <li className="text-[#8A8FB9] text-sm">
+                <a href={PriceList} target="_blank">
+                  Wholesales Price List
+                </a>
+              </li>
+              <li className="text-[#8A8FB9] text-sm">
+                <a href={PriceList} target="_blank">
+                  Retail Price List
+                </a>
+              </li>
+              <li className="text-[#8A8FB9] text-sm">
+                <Link to="about_us">About Us</Link>
+              </li>
+              <li className="text-[#8A8FB9] text-sm">
+                <Link to="rewards">Rewards</Link>
+              </li>
+              <li className="text-[#8A8FB9] text-sm">
+                <Link to="policy">Privacy & Policy</Link>
+              </li>
             </ul>
           </div>
         </div>

@@ -65,6 +65,7 @@ const Home = () => {
     dispatch(selectedCatProduct(data));
   };
 
+  console.log("first", allProduct);
   return (
     <>
       <Carousel />
@@ -133,18 +134,19 @@ const Home = () => {
           </div>
         </div>
 
-        {/* <div>
+        <div>
           <h1 className="text-2xl font-bold mb-6">Condiments</h1>
           <div
             className={`lg:px-0 px-5 grid lg:grid-cols-4 grid-cols-2 gap-x-5 gap-y-10`}
           >
             {allProduct
-              .filter((item) => item.categories?.includes("Condiments"))
+              .filter((item) => item.categories?.includes("condiments"))
               .slice(0, 4)
-              .map((product) => (
-                <div key={product.id}>
+              .map((product, index) => (
+                <div key={index}>
                   <ProductCard
                     {...product}
+                    productImg={product.imageUrl}
                     price={countryPrice(product, country)}
                     countryCode={countryCurrency(product, country)}
                     // Actions
@@ -176,10 +178,11 @@ const Home = () => {
             {allProduct
               .filter((item) => item.categories?.includes("Grains and Flours"))
               .slice(0, 4)
-              .map((product) => (
-                <div key={product.id}>
+              .map((product, index) => (
+                <div key={index}>
                   <ProductCard
                     {...product}
+                    productImg={product.imageUrl}
                     price={countryPrice(product, country)}
                     countryCode={countryCurrency(product, country)}
                     // Actions
@@ -201,7 +204,7 @@ const Home = () => {
               </button>
             </Link>
           </div>
-        </div> */}
+        </div>
       </div>
     </>
   );

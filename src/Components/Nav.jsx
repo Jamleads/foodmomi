@@ -171,7 +171,12 @@ const Nav = () => {
             </li>
             <li>
               <a href={PriceList} target="_blank">
-                Price List
+                Wholesales Price List
+              </a>
+            </li>
+            <li>
+              <a href={PriceList} target="_blank">
+                Retail Price List
               </a>
             </li>
             <li>
@@ -186,7 +191,7 @@ const Nav = () => {
                 About Us
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 to="rewards"
                 className={
@@ -207,7 +212,7 @@ const Nav = () => {
               >
                 Privacy & Policy
               </Link>
-            </li>
+            </li> */}
           </ul>
 
           {/* On mobile */}
