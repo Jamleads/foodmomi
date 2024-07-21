@@ -80,3 +80,4 @@ export { default as waitlistBanner } from "../assets/waitlist.jpg";
 
 export { default as BrandProduct } from "../assets/Brand_product.pdf";
 export { default as PriceList } from "../assets/FoodbyMomiPricelist.pdf";
+export { default as WholesalesPriceList } from "../assets/FOODBYMOMI_WHOLESALE_PRICE_LIST.pdf";

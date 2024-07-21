@@ -1,5 +1,12 @@
 import { Link } from "react-router-dom";
-import { FbIcon, IgIcon, LogoBg, PriceList, TwitterIcon2 } from "../assets";
+import {
+  FbIcon,
+  IgIcon,
+  LogoBg,
+  PriceList,
+  TwitterIcon2,
+  WholesalesPriceList,
+} from "../assets";
 import { categories, allProduct } from "../utilities/Dummy";
 import { useDispatch } from "react-redux";
 import { selectedCatProduct } from "../features/CategoryProductSlice";
@@ -104,7 +111,7 @@ const Footer = () => {
                 </a>
               </li>
               <li className="text-[#8A8FB9] text-sm">
-                <a href={PriceList} target="_blank">
+                <a href={WholesalesPriceList} target="_blank">
                   Retail Price List
                 </a>
               </li>

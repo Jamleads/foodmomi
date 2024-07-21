@@ -8,6 +8,7 @@ import {
   LogoBg,
   PriceList,
   SearchIcon,
+  WholesalesPriceList,
 } from "../assets";
 import { useDispatch, useSelector } from "react-redux";
 import { Pork } from "../assets/img";
@@ -170,7 +171,7 @@ const Nav = () => {
               </Link>
             </li>
             <li>
-              <a href={PriceList} target="_blank">
+              <a href={WholesalesPriceList} target="_blank">
                 Wholesales Price List
               </a>
             </li>
