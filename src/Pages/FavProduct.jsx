@@ -4,31 +4,45 @@ import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
 import { duplicateCheck } from "../utilities/DuplicateCheck";
 import { successToast, warnToast } from "../utilities/ToastMessage";
 import { add } from "../features/CartSlice";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
+import { setAuthFormOpen } from "../features/AuthSlice";
+import { useAddItemToCartMutation } from "../services/cart";
 const FavProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const country = useSelector(
-    (state) => state.location?.location?.country?.name
-  );
-  const favorite = useSelector((state) => state.fav);
-  const cart = useSelector((state) => state.cart);
+
+  const theState = useSelector((state) => state);
+  const country = theState?.location?.location?.country?.name;
+  const isAuthenticated = theState?.auth.isAuthenticated;
+  const favorite = theState?.fav;
+  const cart = theState?.cart?.cartList;
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   // ///////// CART ///////
-  const addToCart = (product) => {
+  const [addItemToCart] = useAddItemToCartMutation();
+  const { refetchCart } = useOutletContext();
+  const addToCart = async (product) => {
     const isDuplicate = duplicateCheck(cart, product);
-    if (isDuplicate) {
+    if (!isAuthenticated) {
+      dispatch(setAuthFormOpen(true));
+    } else if (isDuplicate) {
       warnToast("Item already in cart, click + to increace the quantity");
+      navigate("/cart");
     } else {
-      dispatch(add(product));
-      successToast("Item added to cart");
+      try {
+        const payLoad = {
+          id: product.id,
+          quantity: 1,
+        };
+        await addItemToCart(payLoad).unwrap();
+        successToast("Product added to cart");
+        refetchCart();
+      } catch (error) {}
     }
-    navigate("/cart");
   };
 
   return (

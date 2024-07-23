@@ -1,26 +1,29 @@
 /* eslint-disable no-unused-vars */
-import { useEffect } from "react";
-import { add } from "../features/CartSlice";
+import { useEffect, useState } from "react";
 import { addFav } from "../features/FavSlice";
 import Carousel from "../components/Carousel";
 import "react-toastify/dist/ReactToastify.css";
 import ProductCard from "../components/ProductCard";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { duplicateCheck } from "../utilities/DuplicateCheck";
 import { selectProduct } from "../features/SingleProuctSlice";
 import { successToast, warnToast } from "../utilities/ToastMessage";
 import { selectedCatProduct } from "../features/CategoryProductSlice";
 import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
-import { newlyAdded } from "../utilities/Dummy";
+import { useAddItemToCartMutation } from "../services/cart";
+import { setAuthFormOpen } from "../features/AuthSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const theState = useSelector((state) => state);
   const allProduct = theState?.allProducts.allProducts;
-  const cart = theState?.cart;
+  const cart = theState?.cart?.cartList;
   const favorite = theState?.fav;
+  const isAuthenticated = theState.auth.isAuthenticated;
+  const [addItemToCart] = useAddItemToCartMutation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,14 +33,24 @@ const Home = () => {
   );
 
   // ///////// CART ///////
-  const addToCart = (product) => {
+  const { refetchCart } = useOutletContext();
+  const addToCart = async (product) => {
     const isDuplicate = duplicateCheck(cart, product);
-    if (isDuplicate) {
-      navigate("/cart");
+    if (!isAuthenticated) {
+      dispatch(setAuthFormOpen(true));
+    } else if (isDuplicate) {
       warnToast("Item already in cart, click + to increace the quantity");
+      navigate("/cart");
     } else {
-      dispatch(add(product));
-      successToast("Item added to cart");
+      try {
+        const payLoad = {
+          id: product.id,
+          quantity: 1,
+        };
+        await addItemToCart(payLoad).unwrap();
+        successToast("Product added to cart");
+        refetchCart();
+      } catch (error) {}
     }
   };
 
@@ -65,7 +78,6 @@ const Home = () => {
     dispatch(selectedCatProduct(data));
   };
 
-  console.log("first", allProduct);
   return (
     <>
       <Carousel />

@@ -7,14 +7,19 @@ import {
   TwitterIcon2,
   WholesalesPriceList,
 } from "../assets";
-import { categories, allProduct } from "../utilities/Dummy";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectedCatProduct } from "../features/CategoryProductSlice";
 
 const Footer = () => {
   const dispatch = useDispatch();
+
+  const allCategories = useSelector(
+    (state) => state?.categoryProduct.allcategories
+  );
+  const allProducts = useSelector((state) => state.allProducts.allProducts);
+
   const handleCategoryClick = (category) => {
-    const theArray = allProduct.filter((item) =>
+    const theArray = allProducts.filter((item) =>
       item.categories.includes(category)
     );
     const data = { categoryName: category, categoryProducts: theArray };
@@ -61,14 +66,14 @@ const Footer = () => {
           <div className="footer-links-wrap lg:w-1/5">
             <p className="text-[#000000] text-xl font-bold">Catagories</p>
             <ul className="mt-5">
-              {categories.map((category) => (
+              {allCategories.map((category) => (
                 <Link
                   key={category.id}
-                  to={`/${category.category}`}
+                  to={`/${category.name}`}
                   onClick={() => handleCategoryClick(category.category)}
                 >
                   <li className="text-[#8A8FB9] py-1 text-sm">
-                    {category.category}
+                    {category.name}
                   </li>
                 </Link>
               ))}

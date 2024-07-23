@@ -2,18 +2,22 @@ import Button from "../components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../components/CartItem";
 import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
-import { clear, remove } from "../features/CartSlice";
+import { clear, remove, setCartList } from "../features/CartSlice";
 import { errorToast, successToast } from "../utilities/ToastMessage";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import { CheckList, CheckMark, ClockIcon } from "../assets";
+import { useRemoveItemFromCartMutation } from "../services/cart";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart?.cartList);
   const country = useSelector(
     (state) => state.location?.location?.country?.name
   );
+
+  const { refetchCart } = useOutletContext();
+  const [removeItemFromCart] = useRemoveItemFromCartMutation();
 
   const [itemTotalAry, setItemTotalAry] = useState(null);
   const [greetMessage, setGreetMessage] = useState(false);
@@ -25,7 +29,6 @@ const Cart = () => {
     }))
   );
 
-  // // // // // Scroll // // // // //
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -33,7 +36,7 @@ const Cart = () => {
   // // // // // Price Calculation // // // // //
   useEffect(() => {
     setCartValues(cartValues);
-    const totalAry = cartValues.map((item) => item.total);
+    const totalAry = cartValues?.map((item) => item?.total);
     setItemTotalAry(totalAry);
   }, [cartValues]);
 
@@ -41,12 +44,6 @@ const Cart = () => {
   const fee = (overAllItemTotal / 100) * 5;
   const chekOutTotal = overAllItemTotal + fee;
 
-  // // // // // Remove Product from Cart // // // // //
-  const removeItem = (item) => {
-    dispatch(remove(item));
-    successToast("Item removed from cart");
-    setCartValues(cartValues.filter((product) => product.id !== item));
-  };
   const increaseCount = (index) => {
     setCartValues((preValues) => {
       const newValues = [...preValues];
@@ -74,8 +71,22 @@ const Cart = () => {
     });
   };
 
+  // // // // // Remove Product from Cart // // // // //
+  const removeItem = async (id) => {
+    const payLoad = {
+      id: id,
+    };
+    try {
+      const res = await removeItemFromCart(payLoad).unwrap();
+      refetchCart();
+      successToast("Product removed successfully");
+    } catch (error) {
+      errorToast(error?.message);
+    }
+  };
+
   // // // // // Clear Product from Cart // // // // //
-  const clearCart = () => {
+  const clearCart = async () => {
     dispatch(clear());
     setCartValues([]);
     successToast("Cart cleard");
@@ -115,7 +126,7 @@ const Cart = () => {
 
             {cart.map((item, index) => (
               <CartItem
-                key={item.id}
+                key={index}
                 {...item}
                 productImg={item.imageUrl}
                 price={countryPrice(item, country)}

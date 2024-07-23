@@ -11,20 +11,51 @@ import { FbIcon2, IgIcon2, LinkIcon, TwitterIconX } from "../assets/index.js";
 import PopModal from "./PopModal.jsx";
 import { useGetAllProductQuery } from "../services/product.js";
 import { setAllProducts } from "../features/AllProductSlice.js";
+import {
+  setAllCategories,
+  setProducts,
+} from "../features/CategoryProductSlice.js";
+import { useGetAllCategoriesQuery } from "../services/categories.js";
+import Login from "./Login.jsx";
+import { setAuthFormOpen } from "../features/AuthSlice.js";
+import { useGetCartQuery } from "../services/cart.js";
+import { setCartList } from "../features/CartSlice.js";
 
 const LayOutKid = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
   const [popUp, setPopUp] = useState(true);
-  const state = useSelector((state) => state);
-  const { data, isLoading } = useGetAllProductQuery();
   const [readyToShare, setReadyToShare] = useState(false);
-  const locationStatus = useSelector((state) => state.location.status);
+
+  const { data, isLoading } = useGetAllProductQuery();
+  const { data: cartData, isFetching, refetch } = useGetCartQuery();
+  const { data: categoryData, isLoading: isLoadingCat } =
+    useGetAllCategoriesQuery();
+
+  const theState = useSelector((state) => state);
+  const locationStatus = theState?.location.status;
+  const allProducts = theState?.allProducts.allProducts;
+  const authFormOpen = theState?.auth.authFormOpen;
+  console.log("theState", theState);
 
   useEffect(() => {
     dispatch(getLocationByIp());
   }, [dispatch]);
+
+  // Setting product to state
+  useEffect(() => {
+    if (!isLoadingCat) {
+      dispatch(setAllCategories(categoryData?.product_categorys));
+    }
+  }, [categoryData, isLoadingCat]);
+
+  useEffect(() => {
+    if (!isFetching) {
+      dispatch(setCartList(cartData?.cart || cartData?.carts));
+    }
+  }, [isFetching, cartData]);
 
   useEffect(() => {
     if (!isLoading) {
@@ -32,11 +63,31 @@ const LayOutKid = () => {
     }
   }, [data, isLoading]);
 
+  // setting state product to category products
+  useEffect(() => {
+    if (allProducts?.length > 0) {
+      dispatch(setProducts(allProducts));
+    }
+  }, [allProducts, dispatch]);
+  // setAllCategories
+
   return (
     <>
+      {authFormOpen && (
+        <div>
+          <Login />
+        </div>
+      )}
+      {authFormOpen && (
+        <div
+          onClick={() => dispatch(setAuthFormOpen(false))}
+          className="modal-backdrop"
+        ></div>
+      )}
+
       <ToastContainer />
 
-      {locationStatus === "loading" ? (
+      {locationStatus === "loading" || !allProducts ? (
         <div className="w-full h-[100vh] flex items-center justify-center bg-[#a8cc4515]">
           <Loader color={"#354231"} width={1000} />
         </div>
@@ -46,7 +97,7 @@ const LayOutKid = () => {
             readyToShare ? "overflow-y-hidden h-[100vh]" : ""
           }`}
         >
-          {/* <div
+          <div
             className={`${
               pathname !== "/waitlist" && pathname !== "/shop" && popUp
                 ? ""
@@ -62,7 +113,7 @@ const LayOutKid = () => {
                 ? ""
                 : "hidden"
             } modal-backdrop`}
-          ></div> */}
+          ></div>
 
           {/* LEC: NAVBAR */}
           <div className="">
@@ -92,7 +143,7 @@ const LayOutKid = () => {
               ""
             )}
 
-            <Outlet />
+            <Outlet context={{ refetchCart: refetch }} />
           </div>
 
           {/* LEC: FOOTTER */}
@@ -101,78 +152,6 @@ const LayOutKid = () => {
               <Footer />
             </div>
           )}
-
-          {/* TODO: WORK ON THE SHARE TO SOCIAL MODAL */}
-          <div
-            className={` ${
-              readyToShare ? " overflow-y-hidden" : "hidden"
-            } moodal fixed top-0 left-0 right-0 h-[100vh] bg-[#c9c6c688] flex items-center justify-center z-40`}
-          >
-            <div className="flex flex-col items-center justify-center text-center w-[50%] gap-5 bg-white mx-auto py-10 relative">
-              <div>
-                <h1 className="font-bold text-2xl">Share This Product</h1>
-                <p>Spread the word about this product</p>
-              </div>
-
-              <div className="flex items-center justify-center text-center gap-5">
-                <div
-                  onClick={() => {}}
-                  className="text-center cursor-pointer flex flex-col gap-3 items-center justify-center"
-                >
-                  <div className="w-[60px] h-[60px] rounded-full flex items-center justify-center">
-                    <img
-                      src={FbIcon2}
-                      alt="facebook_Icon"
-                      className="w-full h-full rounded-full"
-                    />
-                  </div>
-                  <h2>Facebook</h2>
-                </div>
-                <div
-                  onClick={() => {}}
-                  className="text-center cursor-pointer flex flex-col gap-3 items-center justify-center"
-                >
-                  <div className="w-[60px] h-[60px] rounded-full flex items-center justify-center">
-                    <img
-                      src={IgIcon2}
-                      alt="Instagram"
-                      className="w-full h-full rounded-full"
-                    />
-                  </div>
-                  <h2>Instagram</h2>
-                </div>
-                <div
-                  onClick={() => {}}
-                  className="text-center cursor-pointer flex flex-col gap-3 items-center justify-center"
-                >
-                  <div className="w-[60px] h-[60px] rounded-full flex items-center justify-center">
-                    <img
-                      src={TwitterIconX}
-                      alt="twiterX_icon"
-                      className="w-full h-full rounded-full"
-                    />
-                  </div>
-                  <h2>Twitter/X</h2>
-                </div>
-                <div
-                  onClick={() => {}}
-                  className="text-center cursor-pointer flex flex-col gap-3 items-center justify-center"
-                >
-                  <div className="w-[60px] h-[60px] border-2 border-primary rounded-full flex items-center justify-center">
-                    <img src={LinkIcon} alt="facebook_Icon" />
-                  </div>
-                  <h2>Copy Link</h2>
-                </div>
-              </div>
-
-              <p
-                className="absolute top-0 right-5 p-5 cursor-pointer"
-                onClick={() => setReadyToShare(!readyToShare)}
-              >
-                X
-              </p>
-            </div>
-          </div>
         </div>
       )}
     </>

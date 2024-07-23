@@ -6,9 +6,11 @@ import singleProductReducer from "../features/SingleProuctSlice";
 import categoryProductReducers from "../features/CategoryProductSlice";
 import allProductReducers from "../features/AllProductSlice";
 import { api } from "../services/api";
+import authReducer from "../features/AuthSlice";
 
 const store = configureStore({
   reducer: {
+    auth: authReducer,
     allProducts: allProductReducers,
     [api.reducerPath]: api.reducer,
     location: locationReducer,

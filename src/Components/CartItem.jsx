@@ -9,7 +9,7 @@ const CartItem = ({
   decrease,
   cartValues,
 }) => {
-  cartValues[index].total = cartValues?.[index]?.count * price || price;
+  // cartValues[index].total = cartValues?.[index]?.count * price || price;
   return (
     <div className="product-card2 flex items-center py-2 lg:px-0 px-3 border-b-4 border-[#E1E1E4]">
       <div className="product-side w-2/5 flex items-center">
@@ -17,7 +17,7 @@ const CartItem = ({
           <img src={productImg} alt="" width="80%" className="h-full" />
 
           <div
-            className="btn absolute -top-2 right-0 w-[20px] h-[20px] flex items-center justify-center bg-red-500 text-mainWhite rounded-full"
+            className="btn cursor-pointer absolute -top-2 right-0 w-[20px] h-[20px] flex items-center justify-center bg-red-500 text-mainWhite rounded-full"
             onClick={removeItem}
           >
             X
@@ -48,7 +48,7 @@ const CartItem = ({
               -
             </span>
             <span className="w-1/3 border-x-[1px] px-2 lg:text-base text-xs flex items-center justify-center">
-              {cartValues[index].count}
+              {/* {cartValues[index].count} */}
             </span>
             <span
               className="w-1/3 btn flex items-center justify-center active:bg-secondary lg:text-base text-xs  cursor-pointer"

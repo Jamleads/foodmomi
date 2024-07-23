@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { allProduct } from "../utilities/Dummy";
 
 const singleProductSlice = createSlice({
   name: "product",
   initialState: {
-    products: allProduct,
+    products: {},
     selectedProduct: null,
   },
   reducers: {

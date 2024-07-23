@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { AdvertMessage, allProduct, categories } from "../utilities/Dummy";
+import { AdvertMessage } from "../utilities/Dummy";
 import {
   CartIcon2,
   FavIcon2,
@@ -20,11 +20,13 @@ const Nav = () => {
   const [adsMessage, setAdsMessage] = useState(0);
   const [openCategories, setOpenCategories] = useState(false);
   const [openPages, setOpenPages] = useState(false);
-  const cartProduct = useSelector((state) => state.cart);
-  const favSlice = useSelector((state) => state.fav);
-  const country = useSelector(
-    (state) => state.location?.location?.country?.name
-  );
+
+  const theState = useSelector((state) => state);
+  const favSlice = theState?.fav;
+  const cartProduct = theState?.cart?.cartList;
+  const country = theState?.location?.location?.country?.name;
+  const allCategories = theState?.categoryProduct.allcategories;
+
   useEffect(() => {
     const currentMessage = setInterval(() => {
       setAdsMessage((message) => (message + 1) % AdvertMessage.length);
@@ -39,8 +41,9 @@ const Nav = () => {
     setOpenPages(!openPages);
   };
 
+  const allProducts = useSelector((state) => state.allProducts.allProducts);
   const handleCategoryClick = (category) => {
-    const theArray = allProduct.filter((item) =>
+    const theArray = allProducts.filter((item) =>
       item.categories.includes(category)
     );
     const data = { categoryName: category, categoryProducts: theArray };
@@ -83,10 +86,18 @@ const Nav = () => {
           <div className="flex items-center gap-3">
             <div className="nav-profile flex items-center gap-1">
               <div className="w-[40px] h-[40px] rounded-full">
-                <img src={Pork} alt="" className=" w-full rounded-full" />
+                <img
+                  src={
+                    theState?.auth?.user?.imageUrl
+                      ? theState?.auth?.user?.imageUrl
+                      : Pork
+                  }
+                  alt=""
+                  className=" w-full rounded-full"
+                />
               </div>
               <div className="text-center flex items-center justify-center flex-col text-sm px-2">
-                <h1>Adetunji Jacob</h1>
+                <h1>{theState?.auth?.user?.name}</h1>
                 <p>{country}</p>
               </div>
             </div>
@@ -136,14 +147,14 @@ const Nav = () => {
               } absolute top-10 left-0 bg-white shadow-lg lg:w-[300px] w-full`}
             >
               <ul className="">
-                {categories.map((category) => (
+                {allCategories?.map((category, idx) => (
                   <Link
-                    key={category.id}
-                    to={`/${category.category}`}
-                    onClick={() => handleCategoryClick(category.category)}
+                    key={idx}
+                    to={`/${category.name}`}
+                    onClick={() => handleCategoryClick(category.name)}
                   >
                     <li className="px-7 py-2 cursor-pointer hover:bg-secondary uppercase">
-                      {category.category}
+                      {category.name}
                     </li>
                   </Link>
                 ))}

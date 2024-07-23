@@ -34,7 +34,7 @@ const FormModal = () => {
         setIsLoading(false);
         navigate("/shop");
       } catch (error) {
-        console.log("the error is", error);
+        errorToast(error?.message);
       }
     }
   };

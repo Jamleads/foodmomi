@@ -2,35 +2,48 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
 import { duplicateCheck } from "../utilities/DuplicateCheck";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { successToast, warnToast } from "../utilities/ToastMessage";
 import { add } from "../features/CartSlice";
 import Button from "./Button";
+import { setAuthFormOpen } from "../features/AuthSlice";
+import { useAddItemToCartMutation } from "../services/cart";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const favorite = useSelector((state) => state.fav);
-  const selectedProduct = useSelector((state) => state.product.selectedProduct);
-  const country = useSelector(
-    (state) => state.location?.location?.country?.name
-  );
+  const theState = useSelector((state) => state);
+  const cart = theState?.cart?.cartList;
+  const selectedProduct = theState?.product.selectedProduct;
+  const country = theState?.location?.location?.country?.name;
+  const isAuthenticated = theState.auth.isAuthenticated;
 
   // // // // // Scroll // // // // //
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const addToCart = (product) => {
-    const isDuplicate = duplicateCheck(favorite, product);
-    if (isDuplicate) {
+  const [addItemToCart] = useAddItemToCartMutation();
+  const { refetchCart } = useOutletContext();
+  const addToCart = async (product) => {
+    const isDuplicate = duplicateCheck(cart, product);
+    if (!isAuthenticated) {
+      dispatch(setAuthFormOpen(true));
+    } else if (isDuplicate) {
       warnToast("Item already in cart, click + to increace the quantity");
+      navigate("/cart");
     } else {
-      dispatch(add(product));
-      successToast("Item added to cart");
+      try {
+        const payLoad = {
+          id: product.id,
+          quantity: 1,
+        };
+        await addItemToCart(payLoad).unwrap();
+        successToast("Product added to cart");
+        refetchCart();
+      } catch (error) {}
     }
-    navigate("/cart");
   };
 
   return (
@@ -71,21 +84,20 @@ const ProductDetails = () => {
                   placeholder="1"
                 />
               </div> */}
-
-              <Button
-                btnClick={() => addToCart(selectedProduct)}
-                btnStyle={"bg-primary text-white"}
-                btnText={"Add To Cart"}
-              />
             </div>
 
             <p className="text-primary mt-1">
               Categories: <span>{selectedProduct?.categories.join(", ")}</span>
             </p>
 
-            <button className="w-full font-bold text-xl text-white py-2 bg-blue mt-4">
+            <Button
+              btnClick={() => addToCart(selectedProduct)}
+              btnStyle={"bg-primary text-white w-full mt-3"}
+              btnText={"Add To Cart"}
+            />
+            {/* <button className="w-full font-bold text-xl text-white py-2 bg-blue mt-4">
               Checkout
-            </button>
+            </button> */}
           </div>
         </div>
       )}

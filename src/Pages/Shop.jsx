@@ -1,14 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../components/ProductCard";
-// import { allProduct } from "../utilities/Dummy";
 import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
 import { duplicateCheck } from "../utilities/DuplicateCheck";
 import { successToast, warnToast } from "../utilities/ToastMessage";
 import { addFav } from "../features/FavSlice";
 import { add } from "../features/CartSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { selectProduct } from "../features/SingleProuctSlice";
 import { useEffect } from "react";
+import { setAuthFormOpen } from "../features/AuthSlice";
+import { useAddItemToCartMutation } from "../services/cart";
 
 const Shop = () => {
   const dispatch = useDispatch();
@@ -18,22 +19,34 @@ const Shop = () => {
   );
   const theState = useSelector((state) => state);
   const allProduct = theState?.allProducts.allProducts;
-  const cart = useSelector((state) => state.cart);
-  const favorite = useSelector((state) => state.fav);
-
+  const cart = theState?.cart?.cartList;
+  const favorite = theState?.fav;
+  const isAuthenticated = theState.auth.isAuthenticated;
   // // // // // Scroll // // // // //
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   // ///////// CART ///////
-  const addToCart = (product) => {
+  const [addItemToCart] = useAddItemToCartMutation();
+  const { refetchCart } = useOutletContext();
+  const addToCart = async (product) => {
     const isDuplicate = duplicateCheck(cart, product);
-    if (isDuplicate) {
-      warnToast("Item already added to cart");
+    if (!isAuthenticated) {
+      dispatch(setAuthFormOpen(true));
+    } else if (isDuplicate) {
+      warnToast("Item already in cart, click + to increace the quantity");
+      navigate("/cart");
     } else {
-      dispatch(add(product));
-      successToast("Item added to cart");
+      try {
+        const payLoad = {
+          id: product.id,
+          quantity: 1,
+        };
+        await addItemToCart(payLoad).unwrap();
+        successToast("Product added to cart");
+        refetchCart();
+      } catch (error) {}
     }
   };
 

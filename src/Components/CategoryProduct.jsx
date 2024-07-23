@@ -4,16 +4,18 @@ import { useEffect } from "react";
 import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
 import { duplicateCheck } from "../utilities/DuplicateCheck";
 import { successToast, warnToast } from "../utilities/ToastMessage";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { addFav } from "../features/FavSlice";
 import { add } from "../features/CartSlice";
 import { selectProduct } from "../features/SingleProuctSlice";
+import { setAuthFormOpen } from "../features/AuthSlice";
+import { useAddItemToCartMutation } from "../services/cart";
 
 const CategoryProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart?.cartList);
   const favorite = useSelector((state) => state.fav);
   const catProducts = useSelector(
     (state) => state.categoryProduct.selectedCatProduct
@@ -21,20 +23,33 @@ const CategoryProduct = () => {
   const country = useSelector(
     (state) => state.location?.location?.country?.name
   );
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   // // // // // Scroll // // // // //
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   // ///////// CART ///////
-  const addToCart = (product) => {
+  const [addItemToCart] = useAddItemToCartMutation();
+  const { refetchCart } = useOutletContext();
+  const addToCart = async (product) => {
     const isDuplicate = duplicateCheck(cart, product);
-    if (isDuplicate) {
-      navigate("/cart");
+    if (!isAuthenticated) {
+      dispatch(setAuthFormOpen(true));
+    } else if (isDuplicate) {
       warnToast("Item already in cart, click + to increace the quantity");
+      navigate("/cart");
     } else {
-      dispatch(add(product));
-      successToast("Item added to cart");
+      try {
+        const payLoad = {
+          id: product.id,
+          quantity: 1,
+        };
+        await addItemToCart(payLoad).unwrap();
+        successToast("Product added to cart");
+        refetchCart();
+      } catch (error) {}
     }
   };
 
@@ -61,10 +76,11 @@ const CategoryProduct = () => {
       <div
         className={`lg:px-0 px-5 grid lg:grid-cols-4 grid-cols-2 gap-x-5 gap-y-10`}
       >
-        {catProducts?.categoryProducts?.map((product) => (
-          <div key={[product.id]}>
+        {catProducts?.categoryProducts?.map((product, index) => (
+          <div key={[index]}>
             <ProductCard
               {...product}
+              productImg={product?.imageUrl}
               price={countryPrice(product, country)}
               countryCode={countryCurrency(product, country)}
               onClickCart={() => addToCart(product)}

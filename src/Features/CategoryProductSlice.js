@@ -1,18 +1,46 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { allProduct } from "../utilities/Dummy";
 
 const categoryProductSlice = createSlice({
   name: "categoryProduct",
   initialState: {
-    products: allProduct,
+    products: [],
+    allcategories: [],
     selectedCatProduct: null,
   },
   reducers: {
+    setProducts: (state, action) => {
+      state.products = action.payload;
+    },
+    setAllCategories: (state, action) => {
+      state.allcategories = action.payload;
+    },
     selectedCatProduct: (state, action) => {
       state.selectedCatProduct = action.payload;
     },
   },
 });
 
-export const { selectedCatProduct } = categoryProductSlice.actions;
+export const { setProducts, selectedCatProduct, setAllCategories } =
+  categoryProductSlice.actions;
 export default categoryProductSlice.reducer;
+
+// import { createSlice } from "@reduxjs/toolkit";
+
+// const categoryProductSlice = createSlice({
+//   name: "categoryProduct",
+//   initialState: {
+//     products: [],
+//     selectedCatProduct: null,
+//   },
+//   reducers: {
+//     setProducts: (state, action) => {
+//       state.products = action.payload;
+//     },
+//     selectCatProduct: (state, action) => {
+//       state.selectedCatProduct = action.payload;
+//     },
+//   },
+// });
+
+// export const { setProducts, selectCatProduct } = categoryProductSlice.actions;
+// export default categoryProductSlice.reducer;
