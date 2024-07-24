@@ -35,6 +35,7 @@ const LayOutKid = () => {
     useGetAllCategoriesQuery();
 
   const theState = useSelector((state) => state);
+  const isAuthenticated = theState.auth.isAuthenticated;
   const locationStatus = theState?.location.status;
   const allProducts = theState?.allProducts.allProducts;
   const authFormOpen = theState?.auth.authFormOpen;
@@ -97,25 +98,28 @@ const LayOutKid = () => {
             readyToShare ? "overflow-y-hidden h-[100vh]" : ""
           }`}
         >
-          <div
-            className={`${
-              pathname !== "/waitlist" && pathname !== "/shop" && popUp
-                ? ""
-                : "hidden"
-            }`}
-          >
-            <PopModal openForm={() => navigate("/waitlist")} />
-          </div>
-          <div
-            onClick={() => setPopUp(false)}
-            className={`${
-              pathname !== "/waitlist" && pathname !== "/shop" && popUp
-                ? ""
-                : "hidden"
-            } modal-backdrop`}
-          ></div>
+          {!isAuthenticated && (
+            <div
+              className={`${
+                pathname !== "/waitlist" && pathname !== "/shop" && popUp
+                  ? ""
+                  : "hidden"
+              }`}
+            >
+              <PopModal openForm={() => navigate("/waitlist")} />
+            </div>
+          )}
+          {!isAuthenticated && (
+            <div
+              onClick={() => setPopUp(false)}
+              className={`${
+                pathname !== "/waitlist" && pathname !== "/shop" && popUp
+                  ? ""
+                  : "hidden"
+              } modal-backdrop`}
+            ></div>
+          )}
 
-          {/* LEC: NAVBAR */}
           <div className="">
             <Nav />
           </div>

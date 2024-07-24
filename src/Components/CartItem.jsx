@@ -1,15 +1,14 @@
 const CartItem = ({
-  productImg,
   title,
+  total,
   price,
+  decrease,
+  increase,
+  quantity,
+  productImg,
   removeItem,
   countryCode,
-  increase,
-  index,
-  decrease,
-  cartValues,
 }) => {
-  // cartValues[index].total = cartValues?.[index]?.count * price || price;
   return (
     <div className="product-card2 flex items-center py-2 lg:px-0 px-3 border-b-4 border-[#E1E1E4]">
       <div className="product-side w-2/5 flex items-center">
@@ -48,7 +47,7 @@ const CartItem = ({
               -
             </span>
             <span className="w-1/3 border-x-[1px] px-2 lg:text-base text-xs flex items-center justify-center">
-              {/* {cartValues[index].count} */}
+              {quantity}
             </span>
             <span
               className="w-1/3 btn flex items-center justify-center active:bg-secondary lg:text-base text-xs  cursor-pointer"
@@ -61,9 +60,7 @@ const CartItem = ({
 
         <div className="w-1/3 text-[#15245E] font-bold lg:text-base text-xs">
           {countryCode}{" "}
-          <span className="total-price">
-            {cartValues[index].total.toLocaleString()}
-          </span>
+          <span className="total-price">{total.toLocaleString()}</span>
         </div>
       </div>
     </div>

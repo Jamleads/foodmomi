@@ -29,7 +29,7 @@ const Nav = () => {
 
   useEffect(() => {
     const currentMessage = setInterval(() => {
-      setAdsMessage((message) => (message + 1) % AdvertMessage.length);
+      setAdsMessage((message) => (message + 1) % AdvertMessage?.length);
     }, 2000);
     return () => clearInterval(currentMessage);
   }, []);
@@ -106,7 +106,7 @@ const Nav = () => {
               <Link to="cart">
                 <div className="cart relative w-[40px] h-[40px] flex items-center justify-center cursor-pointer">
                   <p className="absolute -top-2 right-0 font-bold text-red-500">
-                    {cartProduct.length < 1 ? "" : cartProduct.length}
+                    {cartProduct?.length < 1 ? "" : cartProduct?.length}
                   </p>
                   <img src={CartIcon2} alt="" className="w-[80%]" />
                 </div>
@@ -115,7 +115,7 @@ const Nav = () => {
               <Link to="favorite">
                 <div className="nav-fav relative w-[40px] h-[40px] flex items-center justify-center cursor-pointer">
                   <p className="absolute -top-2 right-0 font-bold text-red-500">
-                    {favSlice.length < 1 ? "" : favSlice.length}
+                    {favSlice.length < 1 ? "" : favSlice?.length}
                   </p>
                   <img src={FavIcon2} alt="" className="w-[80%]" />
                 </div>

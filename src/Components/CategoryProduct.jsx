@@ -1,15 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
-import ProductCard from "./ProductCard";
 import { useEffect } from "react";
-import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
-import { duplicateCheck } from "../utilities/DuplicateCheck";
-import { successToast, warnToast } from "../utilities/ToastMessage";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import ProductCard from "./ProductCard";
 import { addFav } from "../features/FavSlice";
-import { add } from "../features/CartSlice";
-import { selectProduct } from "../features/SingleProuctSlice";
+import BarsLoader from "../utilities/BarsLoader";
+import { useDispatch, useSelector } from "react-redux";
 import { setAuthFormOpen } from "../features/AuthSlice";
 import { useAddItemToCartMutation } from "../services/cart";
+import { duplicateCheck } from "../utilities/DuplicateCheck";
+import { selectProduct } from "../features/SingleProuctSlice";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import { successToast, warnToast } from "../utilities/ToastMessage";
+import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
 
 const CategoryProduct = () => {
   const dispatch = useDispatch();
@@ -25,13 +25,12 @@ const CategoryProduct = () => {
   );
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
-  // // // // // Scroll // // // // //
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   // ///////// CART ///////
-  const [addItemToCart] = useAddItemToCartMutation();
+  const [addItemToCart, { isLoading: isAdding }] = useAddItemToCartMutation();
   const { refetchCart } = useOutletContext();
   const addToCart = async (product) => {
     const isDuplicate = duplicateCheck(cart, product);
@@ -71,26 +70,37 @@ const CategoryProduct = () => {
   };
 
   return (
-    <div className="relative lg:w-[70%] mx-auto my-20">
-      <h1 className="text-2xl font-bold mb-6">{catProducts?.categoryName}</h1>
-      <div
-        className={`lg:px-0 px-5 grid lg:grid-cols-4 grid-cols-2 gap-x-5 gap-y-10`}
-      >
-        {catProducts?.categoryProducts?.map((product, index) => (
-          <div key={[index]}>
-            <ProductCard
-              {...product}
-              productImg={product?.imageUrl}
-              price={countryPrice(product, country)}
-              countryCode={countryCurrency(product, country)}
-              onClickCart={() => addToCart(product)}
-              onClickFav={() => addToFav(product)}
-              onClickToDetails={() => handleProductClick(product)}
-            />
-          </div>
-        ))}
+    <>
+      {isAdding ? (
+        <div className="modal">
+          <BarsLoader color={""} height={50} />
+        </div>
+      ) : (
+        ""
+      )}
+      {isAdding ? <div className="modal-backdrop"></div> : ""}
+
+      <div className="relative lg:w-[70%] mx-auto my-20">
+        <h1 className="text-2xl font-bold mb-6">{catProducts?.categoryName}</h1>
+        <div
+          className={`lg:px-0 px-5 grid lg:grid-cols-4 grid-cols-2 gap-x-5 gap-y-10`}
+        >
+          {catProducts?.categoryProducts?.map((product, index) => (
+            <div key={[index]}>
+              <ProductCard
+                {...product}
+                productImg={product?.imageUrl}
+                price={countryPrice(product, country)}
+                countryCode={countryCurrency(product, country)}
+                onClickCart={() => addToCart(product)}
+                onClickFav={() => addToFav(product)}
+                onClickToDetails={() => handleProductClick(product)}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

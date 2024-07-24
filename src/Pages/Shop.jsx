@@ -10,6 +10,7 @@ import { selectProduct } from "../features/SingleProuctSlice";
 import { useEffect } from "react";
 import { setAuthFormOpen } from "../features/AuthSlice";
 import { useAddItemToCartMutation } from "../services/cart";
+import BarsLoader from "../utilities/BarsLoader";
 
 const Shop = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const Shop = () => {
   }, []);
 
   // ///////// CART ///////
-  const [addItemToCart] = useAddItemToCartMutation();
+  const [addItemToCart, { isLoading: isAdding }] = useAddItemToCartMutation();
   const { refetchCart } = useOutletContext();
   const addToCart = async (product) => {
     const isDuplicate = duplicateCheck(cart, product);
@@ -68,26 +69,36 @@ const Shop = () => {
   };
 
   return (
-    <div className="relative lg:w-[80%] mx-auto my-20">
-      <h1 className="text-2xl font-bold mb-6">All PRODUCT</h1>
-      <div
-        className={`lg:px-0 px-5 grid lg:grid-cols-4 grid-cols-2 gap-x-5 gap-y-10`}
-      >
-        {allProduct.map((product) => (
-          <div key={[product.id]}>
-            <ProductCard
-              {...product}
-              productImg={product.imageUrl}
-              price={countryPrice(product, country)}
-              countryCode={countryCurrency(product, country)}
-              onClickCart={() => addToCart(product)}
-              onClickFav={() => addToFav(product)}
-              onClickToDetails={() => handleProductClick(product)}
-            />
-          </div>
-        ))}
+    <>
+      {isAdding ? (
+        <div className="modal">
+          <BarsLoader color={""} height={50} />
+        </div>
+      ) : (
+        ""
+      )}
+      {isAdding ? <div className="modal-backdrop"></div> : ""}
+      <div className="relative lg:w-[80%] mx-auto my-20">
+        <h1 className="text-2xl font-bold mb-6">All PRODUCT</h1>
+        <div
+          className={`lg:px-0 px-5 grid lg:grid-cols-4 grid-cols-2 gap-x-5 gap-y-10`}
+        >
+          {allProduct.map((product) => (
+            <div key={[product.id]}>
+              <ProductCard
+                {...product}
+                productImg={product.imageUrl}
+                price={countryPrice(product, country)}
+                countryCode={countryCurrency(product, country)}
+                onClickCart={() => addToCart(product)}
+                onClickFav={() => addToFav(product)}
+                onClickToDetails={() => handleProductClick(product)}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

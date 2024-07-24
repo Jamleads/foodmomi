@@ -13,6 +13,7 @@ import { selectedCatProduct } from "../features/CategoryProductSlice";
 import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
 import { useAddItemToCartMutation } from "../services/cart";
 import { setAuthFormOpen } from "../features/AuthSlice";
+import BarsLoader from "../utilities/BarsLoader";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Home = () => {
   const cart = theState?.cart?.cartList;
   const favorite = theState?.fav;
   const isAuthenticated = theState.auth.isAuthenticated;
-  const [addItemToCart] = useAddItemToCartMutation();
+  const [addItemToCart, { isLoading: isAdding }] = useAddItemToCartMutation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -80,8 +81,16 @@ const Home = () => {
 
   return (
     <>
-      <Carousel />
+      {isAdding ? (
+        <div className="modal">
+          <BarsLoader color={""} height={50} />
+        </div>
+      ) : (
+        ""
+      )}
+      {isAdding ? <div className="modal-backdrop"></div> : ""}
 
+      <Carousel />
       <div className="relative lg:w-[80%] mx-auto my-20 overflow-x-hidden flex flex-col gap-20">
         {/* <div>
           <h1 className="text-2xl font-bold mb-6">RECENTLY ADDED</h1>

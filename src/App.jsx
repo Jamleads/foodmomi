@@ -14,9 +14,9 @@ import Delivery from "./pages/Delivery";
 import LayOut from "./components/LayOut";
 import FavProduct from "./pages/FavProduct";
 import RequestForm from "./pages/RequestForm";
+import FormModal from "./components/FormModal";
 import ProductDetails from "./components/ProductDetails";
 import CategoryProduct from "./components/CategoryProduct";
-import FormModal from "./components/FormModal";
 
 const route = createBrowserRouter(
   createRoutesFromElements(

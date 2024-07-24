@@ -15,6 +15,13 @@ export const cartApi = api.injectEndpoints({
         method: "GET",
       }),
     }),
+    updateCart: builder.mutation({
+      query: (data) => ({
+        url: "/cart",
+        method: "PUT",
+        body: data,
+      }),
+    }),
     removeItemFromCart: builder.mutation({
       query: (data) => ({
         url: `/cart/remove-product`,
@@ -24,7 +31,7 @@ export const cartApi = api.injectEndpoints({
     }),
     clearCart: builder.query({
       query: () => ({
-        url: "/cart/clear",
+        url: "/cart/clear-cart",
         method: "GET",
       }),
     }),
@@ -34,6 +41,7 @@ export const cartApi = api.injectEndpoints({
 export const {
   useAddItemToCartMutation,
   useGetCartQuery,
+  useUpdateCartMutation,
   useRemoveItemFromCartMutation,
   useLazyClearCartQuery,
 } = cartApi;

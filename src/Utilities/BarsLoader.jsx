@@ -2,7 +2,7 @@
 import { Bars } from "react-loader-spinner";
 const BarsLoader = ({ height, width, color }) => {
   return (
-    <div className="relative flex items-center justify-center w-full ">
+    <div className="relative flex items-center justify-center w-full bg-transparent">
       <Bars
         height={height}
         width={width}
