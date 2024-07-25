@@ -6,12 +6,12 @@ import {
   FavIcon2,
   LeftIcon,
   LogoBg,
+  Pork,
   PriceList,
   SearchIcon,
   WholesalesPriceList,
 } from "../assets";
 import { useDispatch, useSelector } from "react-redux";
-import { Pork } from "../assets/img";
 import { selectedCatProduct } from "../features/CategoryProductSlice";
 
 const Nav = () => {
