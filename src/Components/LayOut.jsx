@@ -7,7 +7,6 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { getLocationByIp } from "../features/Location.js";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
-import { FbIcon2, IgIcon2, LinkIcon, TwitterIconX } from "../assets/index.js";
 import PopModal from "./PopModal.jsx";
 import { useGetAllProductQuery } from "../services/product.js";
 import { setAllProducts } from "../features/AllProductSlice.js";
