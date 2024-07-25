@@ -182,6 +182,16 @@ const Nav = () => {
               </Link>
             </li>
             <li>
+              <Link
+                to="orders"
+                className={
+                  pathname.includes("/shop") ? "text-secondary font-bold" : ""
+                }
+              >
+                Order History
+              </Link>
+            </li>
+            <li>
               <a href={WholesalesPriceList} target="_blank">
                 Wholesales Price List
               </a>

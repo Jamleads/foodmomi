@@ -111,6 +111,9 @@ const Footer = () => {
                 <Link to="shop">Shop</Link>
               </li>
               <li className="text-[#8A8FB9] text-sm">
+                <Link to="orders">Order History</Link>
+              </li>
+              <li className="text-[#8A8FB9] text-sm">
                 <a href={PriceList} target="_blank">
                   Wholesales Price List
                 </a>

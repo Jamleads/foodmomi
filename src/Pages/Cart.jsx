@@ -21,7 +21,6 @@ const Cart = () => {
   const { refetchCart } = useOutletContext();
   const [cartValues, setCartValues] = useState([]);
   const [paymentLink, setPaymentLink] = useState(null);
-  console.log("the gotten payment link", paymentLink);
   const [itemTotalAry, setItemTotalAry] = useState(null);
   const [greetMessage, setGreetMessage] = useState(false);
 
@@ -126,7 +125,6 @@ const Cart = () => {
     } catch (error) {
       errorToast(error?.message);
     }
-    console.log("checkout payload", payLoad);
   };
 
   return (

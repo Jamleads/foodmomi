@@ -7,6 +7,10 @@ const tHead = "text-[16px] border-rborder-gray-400 py-3 capitalize px-5";
 const tData = "border-rborder-gray-400 capitalize py-3 truncate px-5";
 
 const Order = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const navigate = useNavigate();
   const [allOrders, setAllOrders] = useState(null);
   const { data } = useGetAllOrdersQuery();
@@ -17,7 +21,6 @@ const Order = () => {
   }, [data, setAllOrders]);
 
   const selectOrder = (order) => {
-    console.log("the order selected", order);
     navigate(`/order_details/${order.id}`);
   };
   return (
