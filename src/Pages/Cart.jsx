@@ -3,24 +3,25 @@ import {
   useRemoveItemFromCartMutation,
   useUpdateCartMutation,
 } from "../services/cart";
+import { useSelector } from "react-redux";
 import Button from "../components/Button";
 import { useEffect, useState } from "react";
 import CartItem from "../components/CartItem";
 import BarsLoader from "../utilities/BarsLoader";
-import { useDispatch, useSelector } from "react-redux";
 import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
 import { errorToast, successToast } from "../utilities/ToastMessage";
 import { Link, useOutletContext } from "react-router-dom";
-import { CheckList, CheckMark, ClockIcon } from "../assets";
+import { useOrderCheckOutMutation } from "../services/order";
 
 const Cart = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const dispatch = useDispatch();
   const { refetchCart } = useOutletContext();
   const [cartValues, setCartValues] = useState([]);
+  const [paymentLink, setPaymentLink] = useState(null);
+  console.log("the gotten payment link", paymentLink);
   const [itemTotalAry, setItemTotalAry] = useState(null);
   const [greetMessage, setGreetMessage] = useState(false);
 
@@ -31,6 +32,7 @@ const Cart = () => {
   const [removeItemFromCart, { isLoading: loading2 }] =
     useRemoveItemFromCartMutation();
   const [updateCart, { isLoading }] = useUpdateCartMutation();
+  const [orderCheckOut, { isLoading: isOrdering }] = useOrderCheckOutMutation();
   const [triggerClearCart, { isLoading: isClearing }] = useLazyClearCartQuery();
 
   useEffect(() => {
@@ -112,21 +114,31 @@ const Cart = () => {
     }
   };
 
-  const chechOut = () => {
-    if (cart.length) {
-      setGreetMessage(!greetMessage);
-    } else errorToast(`No item in checkout`);
+  const checkOut = async () => {
+    const payLoad = {
+      total: chekOutTotal,
+      currencyCode: cartValues[0]?.countryCode,
+    };
+    try {
+      const res = await orderCheckOut(payLoad).unwrap();
+      setPaymentLink(res.paymentLink);
+      window.location = res.paymentLink;
+    } catch (error) {
+      errorToast(error?.message);
+    }
+    console.log("checkout payload", payLoad);
   };
+
   return (
     <>
-      {isLoading || loading2 || isClearing ? (
+      {isLoading || loading2 || isClearing || isOrdering ? (
         <div className="modal">
           <BarsLoader color={""} height={50} />
         </div>
       ) : (
         ""
       )}
-      {isLoading || loading2 || isClearing ? (
+      {isLoading || loading2 || isClearing || isOrdering ? (
         <div className="modal-backdrop"></div>
       ) : (
         ""
@@ -208,7 +220,7 @@ const Cart = () => {
                     <span className="total-items">({cartValues?.length})</span>
                   </p>
                   <p className="lg:text-lg text-[rgb(16,23,80)] text-bold">
-                    {overAllItemTotal?.toLocaleString()}
+                    {Number(overAllItemTotal?.toFixed(2)).toLocaleString()}
                   </p>
                 </div>
 
@@ -217,20 +229,21 @@ const Cart = () => {
                     Fees 5%:
                   </p>
                   <p className="lg:text-lg text-[#101750] text-bold">
-                    {fee.toLocaleString()}
+                    {/* {fee.toLocaleString()} */}
+                    {Number(fee?.toFixed(2)).toLocaleString()}
                   </p>
                 </div>
 
                 <div className="flex items-center justify-between py-5 border-b-2 border-[#E8E6F1]">
                   <p className="lg:text-lg text-[#101750] text-bold">Total:</p>
                   <p className="lg:text-lg text-[#101750] text-bold">
-                    {chekOutTotal.toLocaleString()}
+                    {Number(chekOutTotal?.toFixed(2)).toLocaleString()}
                   </p>
                 </div>
 
                 <button
                   className="px-8 py-3 bg-primary checkoutBtn w-full mt-10 mb-5 text-mainWhite"
-                  onClick={chechOut}
+                  onClick={checkOut}
                 >
                   Proceed To Checkout
                 </button>
@@ -238,40 +251,6 @@ const Cart = () => {
             </div>
           </div>
         </section>
-
-        <div
-          className={`absolute modal w-full top-0 left-0 right-0 ${
-            greetMessage ? "flex justify-center" : "hidden"
-          }`}
-        >
-          <div className="lg:w-[50%] lg:h-[350px] mx-auto p-5 relative flex flex-col items-center justify-center gap-5 rounded-xl border-4 border-dashed bg-mainWhite">
-            <div className="absolute top-0 -left-8">
-              <img src={ClockIcon} alt="clock-image" width="70px" />
-            </div>
-
-            <div className="absolute bottom-0 -right-8">
-              <img src={CheckList} alt="checklist-image" width="70px" />
-            </div>
-
-            <img src={CheckMark} alt="check-mark-icon" />
-            <h1 className="lg:text-3xl font-bold">Your Order is Completed!</h1>
-            <p className="text-center font-light w-[80%]">
-              Thank you for your order! Your delivery package is being processed
-              and will be ready within 3-6 hours. You will receive an email
-              confirmation when your delivery package is ready for pick up.
-            </p>
-            <Link to="/">
-              <Button
-                btnClick={() => {
-                  clearCart();
-                  setGreetMessage(!greetMessage);
-                }}
-                btnText="Close"
-                btnStyle="bg-primary text-white font-bold"
-              />
-            </Link>
-          </div>
-        </div>
       </div>
     </>
   );

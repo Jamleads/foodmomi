@@ -44,6 +44,7 @@ const Login = () => {
     } catch (error) {
       errorToast(error?.data?.message);
     }
+    setIsLoading(false);
   };
 
   const handleLogin = async (e) => {
@@ -58,9 +59,9 @@ const Login = () => {
       actionAfterAuth(res);
       successToast("Welcome back");
     } catch (error) {
-      errorToast("invalid login details");
       errorToast(error?.data?.message);
     }
+    setIsLoading(false);
   };
 
   return (

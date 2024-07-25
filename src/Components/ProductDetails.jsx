@@ -4,7 +4,6 @@ import { countryCurrency, countryPrice } from "../utilities/PriceSelection";
 import { duplicateCheck } from "../utilities/DuplicateCheck";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { successToast, warnToast } from "../utilities/ToastMessage";
-import { add } from "../features/CartSlice";
 import Button from "./Button";
 import { setAuthFormOpen } from "../features/AuthSlice";
 import { useAddItemToCartMutation } from "../services/cart";
