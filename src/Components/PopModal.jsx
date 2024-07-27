@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./Button";
-import { BrandProduct, LogoBg } from "../assets";
+import { LogoBg } from "../assets";
+import { Link } from "react-router-dom";
 
 const PopModal = ({ openForm }) => {
   return (
@@ -18,9 +19,7 @@ const PopModal = ({ openForm }) => {
               launching soon, bringing you authentic tastes straight from the
               heart of Africa.{" "}
               <span className="text-secondary underline">
-                <a href={BrandProduct} target="_blank">
-                  View brand product
-                </a>
+                <Link to="brand_product">View brand product</Link>
               </span>
             </p>
 

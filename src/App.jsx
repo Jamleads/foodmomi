@@ -1,3 +1,4 @@
+import ReactDOM from "react-dom";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -21,25 +22,31 @@ import Order from "./pages/Order";
 import ErrorPage from "./pages/ErrorPage";
 import OrderDetails from "./pages/OrderDetails";
 import { useEffect } from "react";
+import RetailPricelist from "./components/RetailPricelist";
+import WhosalesPrice from "./components/WhosalesPrice";
+import BrandProduct from "./components/BrandProduct";
 
 const route = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<LayOut />}>
       <Route index element={<Home />} />
-      <Route path="cart" element={<Cart />} />
-      <Route path="waitlist" element={<FormModal />} />
-      <Route path="shop" element={<Shop />} />
-      <Route path="orders" element={<Order />} />
-      <Route path="order_details/:id" element={<OrderDetails />} />
-      <Route path="shop/:productName" element={<ProductDetails />} />
-      <Route path=":categories" element={<CategoryProduct />} />
-      <Route path="about_us" element={<AboutUs />} />
-      <Route path="favorite" element={<FavProduct />} />
-      <Route path="rewards" element={<Rewards />} />
-      <Route path="delivery" element={<Delivery />} />
-      <Route path="policy" element={<Policy />} />
-      <Route path="request" element={<RequestForm />} />
-      <Route path="*" element={<ErrorPage />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/waitlist" element={<FormModal />} />
+      <Route path="/shop" element={<Shop />} />
+      <Route path="/orders" element={<Order />} />
+      <Route path="/order_details/:id" element={<OrderDetails />} />
+      <Route path="/shop/:productName" element={<ProductDetails />} />
+      <Route path="/:categories" element={<CategoryProduct />} />
+      <Route path="/about_us" element={<AboutUs />} />
+      <Route path="/favorite" element={<FavProduct />} />
+      <Route path="/rewards" element={<Rewards />} />
+      <Route path="/delivery" element={<Delivery />} />
+      <Route path="/policy" element={<Policy />} />
+      <Route path="/request" element={<RequestForm />} />
+      <Route path="/brand_product" element={<BrandProduct />} />
+      <Route path="/retail_pricelist" element={<RetailPricelist />} />
+      <Route path="/wholesale_pricelist" element={<WhosalesPrice />} />
+      {/* <Route path="/*" element={<ErrorPage />} /> */}
     </Route>
   )
 );
@@ -97,5 +104,5 @@ function App() {
     </>
   );
 }
-
+ReactDOM.render(<App />, document.getElementById("root"));
 export default App;

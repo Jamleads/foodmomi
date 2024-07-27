@@ -3,9 +3,9 @@ import {
   FbIcon,
   IgIcon,
   LogoBg,
-  PriceList,
+  RETAILPRICELIST,
   TwitterIcon2,
-  WholesalesPriceList,
+  WHOLESALEPRICE,
 } from "../assets";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedCatProduct } from "../features/CategoryProductSlice";
@@ -114,14 +114,10 @@ const Footer = () => {
                 <Link to="orders">Order History</Link>
               </li>
               <li className="text-[#8A8FB9] text-sm">
-                <a href={PriceList} target="_blank">
-                  Wholesales Price List
-                </a>
+                <Link to="wholesale_pricelist">Wholesales Price List</Link>
               </li>
               <li className="text-[#8A8FB9] text-sm">
-                <a href={WholesalesPriceList} target="_blank">
-                  Retail Price List
-                </a>
+                <Link to="retail_pricelist">Retail Price List</Link>
               </li>
               <li className="text-[#8A8FB9] text-sm">
                 <Link to="about_us">About Us</Link>

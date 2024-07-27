@@ -2,14 +2,12 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { AdvertMessage } from "../utilities/Dummy";
 import {
+  Pork,
+  LogoBg,
   CartIcon2,
   FavIcon2,
   LeftIcon,
-  LogoBg,
-  Pork,
-  PriceList,
   SearchIcon,
-  WholesalesPriceList,
 } from "../assets";
 import { useDispatch, useSelector } from "react-redux";
 import { selectedCatProduct } from "../features/CategoryProductSlice";
@@ -26,6 +24,7 @@ const Nav = () => {
   const cartProduct = theState?.cart?.cartList;
   const country = theState?.location?.location?.country?.name;
   const allCategories = theState?.categoryProduct.allcategories;
+  const isAuthenticated = theState.auth.isAuthenticated;
 
   useEffect(() => {
     const currentMessage = setInterval(() => {
@@ -181,25 +180,43 @@ const Nav = () => {
                 Shop
               </Link>
             </li>
+            {isAuthenticated && (
+              <li>
+                <Link
+                  to="orders"
+                  className={
+                    pathname.includes("/orders")
+                      ? "text-secondary font-bold"
+                      : ""
+                  }
+                >
+                  Order History
+                </Link>
+              </li>
+            )}
             <li>
               <Link
-                to="orders"
+                to="wholesale_pricelist"
                 className={
-                  pathname.includes("/shop") ? "text-secondary font-bold" : ""
+                  pathname.includes("/wholesale_pricelist")
+                    ? "text-secondary font-bold"
+                    : ""
                 }
               >
-                Order History
+                Wholesales Price List
               </Link>
             </li>
             <li>
-              <a href={WholesalesPriceList} target="_blank">
-                Wholesales Price List
-              </a>
-            </li>
-            <li>
-              <a href={PriceList} target="_blank">
+              <Link
+                to="retail_pricelist"
+                className={
+                  pathname.includes("/retail_pricelist")
+                    ? "text-secondary font-bold"
+                    : ""
+                }
+              >
                 Retail Price List
-              </a>
+              </Link>
             </li>
             <li>
               <Link
@@ -281,9 +298,28 @@ const Nav = () => {
                   </Link>
                 </li>
                 <li>
-                  <a href={PriceList} target="_blank">
-                    Price List
-                  </a>
+                  <Link
+                    to="wholesale_pricelist"
+                    className={
+                      pathname.includes("/wholesale_pricelist")
+                        ? "text-secondary font-bold"
+                        : ""
+                    }
+                  >
+                    Wholesales Price List
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="retail_pricelist"
+                    className={
+                      pathname.includes("/retail_pricelist")
+                        ? "text-secondary font-bold"
+                        : ""
+                    }
+                  >
+                    Retail Price List
+                  </Link>
                 </li>
                 <li>
                   <Link
